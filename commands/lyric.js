@@ -36,7 +36,7 @@ const checkSpotify = hits => {
 
 const createQuery = args => {
   if (args === 'np') {
-    const query = [ artist, title ] = getArtistTitle(data.current, {
+    const query = getArtistTitle(data.current, {
       defaultArtist: ' '
     });
     console.log(query)
