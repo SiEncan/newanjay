@@ -36,7 +36,7 @@ bot.on("ready", () => {
 
 });
 
-bot.on("guildMemberAdd", function(member) {
+bot.on("guildMemberAdd", async member => {
     let role = member.guild.roles.find("name", "Member");
     member.addRole(role).catch(console.error);
 });
