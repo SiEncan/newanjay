@@ -152,5 +152,5 @@ function finish(bot, ops, dispatcher) {
 }
 
   module.exports.help = {
-    name: "p"
+    name: "play"
   }
