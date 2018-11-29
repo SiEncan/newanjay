@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, ops) =>{
 
   let joinembed = new Discord.RichEmbed()
   .setColor(`#21e5ff`)
-  .addField("Voice Channel", `ea Ke "**${message.member.voiceChannel.name}**"`)
+  .addField("Voice Channel", `Terhubung Ke "**${message.member.voiceChannel.name}**"`)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
 
