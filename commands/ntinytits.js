@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const randomPuppy = require("random-puppy");
 const request = require("snekfetch");
-const fs = 
+const fs = require("fs");
 
 module.exports.run = async (bot, message, args) => {
     if (!message.channel.nsfw) {
