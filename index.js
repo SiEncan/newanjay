@@ -36,6 +36,10 @@ bot.on("ready", () => {
 
 });
 
+bot.on("guildMemberAdd", function(member) {
+    let role = member.guild.roles.find("name", "Member");
+    member.addRole(role).catch(console.error);
+});
 
 bot.on("guildMemberAdd", async member => {
   console.log(`${member.id} Joined The Server.`);
