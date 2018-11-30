@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const randomPuppy = require("random-puppy");
 const request = require("snekfetch");
-const fs = require("fs");
 
 module.exports.run = async (bot, message, args) => {
     if (!message.channel.nsfw) {
@@ -12,24 +11,14 @@ module.exports.run = async (bot, message, args) => {
 
         try {
             randomPuppy(s)
-              .then(async url => {
-                let fileType = url.slice(-3);
-
-                if (fileType == "gif") {
-                  request.get(url).then(async r => {
-                    let x = await fs.writeFile("./download.gif", r.body);
-                    message.channel.send({
-                      file: "./nsfw.gif"
-                    });
-                  });
-                } else {
-                  request.get(url).then(async r => {
-                    message.channel.send({
-                      file: r.body
-                    });
-                  });
-                }
-              });
+            .then(url => {
+                const embed = new Discord.RichEmbed()
+                    .setColor(0xffa500)
+                    .setImage(url)
+                    .setTimestamp()
+                    .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL);
+                message.channel.send({ embed });
+        })
           } catch (e) {
             let nsmbed = new Discord.RichEmbed()
             .setTitle(`**NSFW** 🔞`)

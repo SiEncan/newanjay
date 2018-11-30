@@ -24,6 +24,8 @@ exports.run = (client, message, args) => {
                 const embed = new Discord.RichEmbed()
                     .setColor(0xffa500)
                     .setImage(url)
+                    .setTimestamp()
+                    .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL);
                 message.channel.send({ embed });
         })
 }
