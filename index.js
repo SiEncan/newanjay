@@ -219,6 +219,7 @@ bot.on("message", async message => {
   if(nxtLvl <= xp[message.author.id].xp){
     xp[message.author.id].level = curlvl + 1;
     let lvlup = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.avatarURL)
     .setTitle("Naik Level!")
     .setColor("#fff200")
     .addField("Level Sekarang:", curlvl + 1);

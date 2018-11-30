@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   console.log(randomNumber);
   if(randomNumber==2){
   let sCoins = coins[message.author.id].coins;
-  if(sCoins < args[0]) return message.reply("Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal 300 Cash 💰");
+  if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
 
     message.channel.send(`Kamu Telah Memenangkan Gamble, dan Mendapatkan ${args[0]} Cash 💰`);
     coins[message.author.id] = {
