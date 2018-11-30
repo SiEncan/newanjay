@@ -20,8 +20,9 @@ module.exports.run = async (bot, message, args) =>{
   .addField("help",`Menampilkan Menu Ini`)
   .addField("botinfo",`Menampilkan Informasi Bot`)
   .addField("cash",`Menampilkan Cash yang kamu punya`)
-  .addField("level",`Menampilkan Level Kamu`)
   .addField("pay",`Mengirim User lain cash, Contoh: pay @User 100`)
+  .addField("gamble", `Berjudi menggunakan cash`)
+  .addField("level",`Menampilkan Level Kamu`)
   .addField("say",`Membuat bot mengetik apa yang kamu katakan`)
   .addField("serverinfo",`Menampilkan Informasi Server`)
   .addField("clear",`Menghapus Pesan, "clear (Banyak Pesan)"`)
@@ -37,9 +38,9 @@ module.exports.run = async (bot, message, args) =>{
   .setFooter("Anjay Bot", bot.user.avatarURL);
 
   message.channel.send(helpembed);
-
-  let helpmusic = new Discord.RichEmbed()
-  .setTitle(`~Music Help~ 🎶`)
+  
+  let helpnsfw = new Discord.RichEmbed()
+  .setTitle(`~NSFW Help~ 🎶`)
   .setDescription(`Commands:`)
   .setColor(`#51c7ff`)
   .addField("play", `Memutar Musik, "play (link Musik)" atau "play (Judul Musik)"`)
@@ -48,6 +49,21 @@ module.exports.run = async (bot, message, args) =>{
   .addField("volume",`Mengatur Volume Musik`)
   .addField("queue",`Menampilkan Antrian Musik`)
   .addField("skip",`Melewati Musik Yang Sedang Diputar`)
+  .setTimestamp()
+  .setFooter("Anjay Bot", bot.user.avatarURL);
+
+  message.channel.send(helpnsfw);
+
+  let helpmusic = new Discord.RichEmbed()
+  .setTitle(`~Music Help~ 🎶`)
+  .setDescription(`Commands:`)
+  .setColor(`#51c7ff`)
+  .addField("play/p", `Memutar Musik, "play (link Musik)" atau "play (Judul Musik)"`)
+  .addField("pause",`Menjeda Musik Yang Sedang Diputar`)
+  .addField("resume",`Melanjutkan Musik Yang Sedang DiJeda`)
+  .addField("volume",`Mengatur Volume Musik`)
+  .addField("queue",`Menampilkan Antrian Musik`)
+  .addField("skip/s",`Melewati Musik Yang Sedang Diputar`)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
 

@@ -17,6 +17,15 @@ module.exports.run = async (client, message, args) => {
       coins: sCoins + parseInt(args[0])
     };
   }else{
+    let coinEmbed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setDescription("💰")
+  .setColor("#13c10d")
+  .addField("Cash Kamu:", uCoins)
+  .setTimestamp()
+  .setFooter("Anjay Bot", bot.user.avatarURL);
+
+  message.channel.send(coinEmbed);
     message.channel.send(`Kamu Telah Kalah Gamble, dan Kehilangan ${args[0]} Cash 💰`);
     let sCoins = coins[message.author.id].coins;
     coins[message.author.id] = {
