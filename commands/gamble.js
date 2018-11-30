@@ -12,6 +12,8 @@ module.exports.run = async (bot, message, args) => {
   let sCoins = coins[message.author.id].coins;
   if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
   
+  if (!args[0]) return message.reply(`Usage: ${exports.help.usage}`, {code:'asciidoc'});
+  
   let winEmbed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setTitle(`Gamble 💰`)
@@ -53,5 +55,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
   module.exports.help = {
-    name: "gamble"
+    name: "gamble",
+    usage: 'gamble [Banyak Cash Yang Ingin Kamu Gamble]'
   }
