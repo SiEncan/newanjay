@@ -1,7 +1,9 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) =>{
-
+  
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
+  
   if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Kamu Tidak Memiliki Permission.");
   let numberofmessages = parseInt(args[0]) + 1;
     if(!args[0]) return message.channel.send(numbermessagesembed);
@@ -12,4 +14,5 @@ module.exports.run = async (bot, message, args) =>{
 
 module.exports.help = {
   name: "clear"
+  
 }

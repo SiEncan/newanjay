@@ -6,12 +6,14 @@ let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) => {
 
-    if (!args[0]) return message.reply(`Usage: ${exports.help.usage}`, {code:'asciidoc'});
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
+  
+  let sCoins = coins[message.author.id].coins;
+  if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
+  
   randomNumber = Math.floor(Math.random() * (3 - 1) + 1);
   console.log(randomNumber);
   if(randomNumber==2){
-  let sCoins = coins[message.author.id].coins;
-  if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
   
   let winEmbed = new Discord.RichEmbed()
   .setAuthor(message.author.username, message.author.avatarURL)

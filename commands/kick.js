@@ -11,9 +11,9 @@ module.exports.run = async (bot, message, args) =>{
     let kickEmbed = new Discord.RichEmbed()
     .setDescription("~Kick~")
     .setColor("#b20c0c")
-    .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
-    .addField("Kicked by", `<@${message.author.id}> with ID ${message.author.id}`)
-    .addField("Kicked In", message.channel)
+    .addField("User", `${kUser} with ID ${kUser.id}`)
+    .addField("Di Kick oleh", `<@${message.author.id}> with ID ${message.author.id}`)
+    .addField("Channel", message.channel)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
