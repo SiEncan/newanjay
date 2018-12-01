@@ -4,7 +4,7 @@ const fs = require("fs");
 module.exports.run = async (bot, message, args) =>{
 
   if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("Kamu Tidak Memiliki Permission.");
-  if(!args[0] || args[0 == "help"]) return message.reply("Gunakan: *prefix <prefix yang diinginkan>");
+  if(!args[0] || args[0 == "help"]) return message.reply("Gunakan: *prefix [prefix yang diinginkan]");
 
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
 

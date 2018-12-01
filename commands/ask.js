@@ -22,5 +22,5 @@ module.exports.run = async (bot, message, args) =>{
 
   module.exports.help = {
     name: "ask",
-    usage: "Gunakan: ask (Pertanyaan)"
+    usage: "ask (Pertanyaan)"
   }

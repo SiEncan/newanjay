@@ -14,5 +14,5 @@ module.exports.run = async (bot, message, args) =>{
 
 module.exports.help = {
   name: "clear",
-  usage: "Gunakan: clear [banyak pesan yang ingin di hapus]"
+  usage: "clear [banyak pesan yang ingin di hapus]"
 }

@@ -58,5 +58,5 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "mute",
-  usage: "Gunakan: mute @user (Waktu), Contoh: mute @user 60s"
+  usage: "mute @user (Waktu), Contoh: mute @user 60s"
 }
