@@ -145,7 +145,6 @@ function finish(bot, ops, dispatcher) {
       ops.active.delete(dispatcher.guildID);
 
       let vc = bot.guilds.get(dispatcher.guildID).me.voiceChannel;
-      if(vc) vc.leave();
 
   }
 
