@@ -6,18 +6,16 @@ let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) => {
 
+    if (!args[0]) return message.reply(`Usage: ${exports.help.usage}`, {code:'asciidoc'});
   randomNumber = Math.floor(Math.random() * (3 - 1) + 1);
   console.log(randomNumber);
   if(randomNumber==2){
   let sCoins = coins[message.author.id].coins;
   if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
   
-  if (!args[0]) return message.reply(`Usage: ${exports.help.usage}`, {code:'asciidoc'});
-  
   let winEmbed = new Discord.RichEmbed()
-  .setAuthor(message.author.username)
-  .setTitle(`Gamble 💰`)
-  .setDescription("Kamu Telah Memenangkan Gamble 😃")
+  .setAuthor(message.author.username, message.author.avatarURL)
+  .setTitle(`Kamu Telah Memenangkan Gamble 😃`)
   .setColor("#26ff4a")
   .addField("Kamu Mendapatkan:", `${args[0]} Cash 💰`)
   .setTimestamp()
@@ -30,9 +28,8 @@ module.exports.run = async (bot, message, args) => {
     };
   }else{
   let loseEmbed = new Discord.RichEmbed()
-  .setAuthor(message.author.username)
-  .setTitle(`Gamble 💰`)
-  .setDescription("Kamu Telah Kalah Gamble ☹️")
+  .setAuthor(message.author.username, message.author.avatarURL)
+  .setTitle(`Kamu Telah Kalah Gamble ☹️`)
   .setColor("#ff3b00")
   .addField("Kamu Kehilangan:", `${args[0]} Cash 💰`)
   .setTimestamp()
