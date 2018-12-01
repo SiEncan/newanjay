@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) =>{
 
   let helloembed = new Discord.RichEmbed()
   .setColor("#ffff00")
-  .addField("Halo kontol", `<@${message.author.id}>`)
+  .addField("Halo Kontol", `<@${message.author.id}>`)
 
   return message.channel.send(helloembed);
 }
