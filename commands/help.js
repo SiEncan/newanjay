@@ -39,21 +39,6 @@ module.exports.run = async (bot, message, args) =>{
 
   message.channel.send(helpembed);
   
-  let helpnsfw = new Discord.RichEmbed()
-  .setTitle(`~NSFW Help~ 🎶`)
-  .setDescription(`Commands:`)
-  .setColor(`#51c7ff`)
-  .addField("play", `Memutar Musik, "play (link Musik)" atau "play (Judul Musik)"`)
-  .addField("pause",`Menjeda Musik Yang Sedang Diputar`)
-  .addField("resume",`Melanjutkan Musik Yang Sedang DiJeda`)
-  .addField("volume",`Mengatur Volume Musik`)
-  .addField("queue",`Menampilkan Antrian Musik`)
-  .addField("skip",`Melewati Musik Yang Sedang Diputar`)
-  .setTimestamp()
-  .setFooter("Anjay Bot", bot.user.avatarURL);
-
-  message.channel.send(helpnsfw);
-
   let helpmusic = new Discord.RichEmbed()
   .setTitle(`~Music Help~ 🎶`)
   .setDescription(`Commands:`)
