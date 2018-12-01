@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) =>{
 
-  if(!args[0]) return message.reply("Tuliskan Pertanyaan Dengan Lengkap!");
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
   let replies = ["Iya", "Enggak", "Kayaknya..","Mana Gw Tau..", "Tanya aja ama Emak lu"];
 
   let jawaban =  Math.floor((Math.random() * replies.length));
@@ -21,5 +21,6 @@ module.exports.run = async (bot, message, args) =>{
 }
 
   module.exports.help = {
-    name: "ask"
+    name: "ask",
+    usage: "Gunakan: ask (Pertanyaan)"
   }

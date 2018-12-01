@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     if(message.member.voiceChannel !== message.guild.me.voiceChannel) return message.channel.send(paembed);
 
-    if(isNaN(args[0]) || args[0] > 200 || args[0] < 0) return message.channel.send('Ketik Angka Dari 1-200');
+    if(isNaN(args[0]) || args[0] > 200 || args[0] < 0) return message.channel.send('Gunakan: volume [1-200]');
 
     fetched.dispatcher.setVolume(args[0]/100);
 
@@ -36,5 +36,5 @@ module.exports.run = async (bot, message, args, ops) =>{
   }
 
     module.exports.help = {
-      name: "volume"
-    }
+      name: "volume",
+   }

@@ -3,6 +3,7 @@ const fs = require("fs");
 let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) =>{
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
   if(message.mentions.users.first() === message.author) return message.reply("Ott.. Tidak Bisa.");
   if(!coins[message.author.id]){
     return message.reply("Kamu Tidak Memiliki Cash!")
@@ -40,5 +41,6 @@ module.exports.run = async (bot, message, args) =>{
 }
 
 module.exports.help = {
-  name: "pay"
+  name: "pay",
+  usage: "Gunakan: pay @User [Jumlah Cash]"
 }

@@ -4,7 +4,8 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
 
   //!tempmute @user 1s/m/h/d
-
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
+  
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!tomute) return message.reply("Tidak Dapat Menemukan User");
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Kamu Tidak Memiliki Permission.");
@@ -56,5 +57,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "mute"
+  name: "mute",
+  usage: "Gunakan: mute @user (Waktu), Contoh: mute @user 60s"
 }
