@@ -34,6 +34,7 @@ module.exports.run = async (bot, message, args) =>{
   .addField("join",`Memasukkan Bot Ke Voice Channel`)
   .addField("leave",`Mengeluarkan Bot Dari Voice Channel`)
   .addField("prefix",`Mengeluarkan Bot Dari Voice Channel`)
+  .addField("autorole", `Menambahkan Role User Yang Baru Join Server`)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
 
