@@ -39,6 +39,15 @@ bot.on("ready", () => {
 
 bot.on('guildMemberAdd', async member => {
     const autoRole = await db.fetch(`autoRole_${member.guild.id}`);
+  
+    const role = await member.guild.roles.find(role => role.name.toLowerCase() === autoRole.toLowerCase()  || role.id === autoRole.toLowerCase());
+    if (!role) return;
+
+    try {
+    member.addRole(role);
+    } catch (e) {
+      console.log(e.stack);
+     }
 })
 
 bot.on("guildMemberAdd", async member => {
