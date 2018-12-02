@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) =>{
     if (!role) return message.channel.send('Provide a role');
 
     db.set(`autoRole_${message.guild.id}`, role);
-    message.channel.send(`Set the auto-role to: \`${role}\``);
+    message.channel.send(`Auto Role diubah menjadi: \`${role}\``);
   
   
 }
