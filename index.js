@@ -55,10 +55,13 @@ bot.on("guildMemberAdd", async member => {
   const welChan = await db.fetch(`welChan_${member.guild.id}`);
   const welText = await db.fetch(`welText_${member.guild.id}`);
   
+  const text = await welText
+    if (!text) return;
+  
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return;
 
-  channel.send(`WOW! , ${member} Has Arrived To Their Destiny!`);
+  channel.send(welText);
 });
 
 bot.on("guildMemberRemove", async member => {
