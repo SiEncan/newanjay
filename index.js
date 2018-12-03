@@ -153,7 +153,8 @@ bot.on("channelCreate", async channel => {
 });
 
 bot.on("channelDelete", async channel => {
-	var logs = channel.guild.channels.find(c => c.name === 'log');
+	const logChan = await db.fetch(`logChan_${channel.guild.id}`);
+  const chan = await channel.guild.channels.find(chan => chan.name.toLowerCase() === logChan.toLowerCase()  || chan.id === logChan.toLowerCase());
 	if (!logs) return console.log("Can't find logs channel.");
 
 	const cembed = new Discord.RichEmbed()
