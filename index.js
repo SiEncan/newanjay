@@ -61,7 +61,7 @@ bot.on("guildMemberAdd", async member => {
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return;
 
-  channel.send(welText);
+  channel.send(`🎉   Selamat Datang ${member}!   🎉`);
 });
 
 bot.on("guildMemberRemove", async member => {
@@ -71,7 +71,7 @@ bot.on("guildMemberRemove", async member => {
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return;
 
-  channel.send(`${member} Has Left The Server.`);
+  channel.send(`${member} Telah Keluar Dari Server.`);
 
 })
 
