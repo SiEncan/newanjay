@@ -214,7 +214,7 @@ bot.on("message", async message => {
   .setDescription(`<@${message.author.id}>`)
   .setColor("#13c10d");
 
-  message.channel.send(coinEmbed)
+  message.channel.send()
   }
 
   let xpAdd = Math.floor(Math.random() * 7) + 8;
