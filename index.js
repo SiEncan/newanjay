@@ -64,7 +64,7 @@ bot.on("guildMemberRemove", async member => {
   const welChan = await db.fetch(`welChan_${member.guild.id}`);
   
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
-    if (!channel) return;
+    if (!channel) return console.log("Tidak bisa menemukan log channel");
 
   channel.send(`${member} Telah Keluar Dari Server.`);
 
@@ -123,7 +123,7 @@ bot.on('messageDelete', async (message) => {
     const logChan = await db.fetch(`logChan_${message.guild.id}`);
     const channel = await message.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
   
-    if (!channel) return;
+    if (!channel) return console.log("Tidak bisa menemukan log channel");
     const logembed = new Discord.RichEmbed()
         .setTitle('**~Pesan Dihapus~**')
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
@@ -142,7 +142,7 @@ bot.on('messageDelete', async (message) => {
 bot.on("channelCreate", async channel => {
   const logChan = await db.fetch(`logChan_${channel.guild.id}`);
   const chan = await channel.guild.channels.find(chan => chan.name.toLowerCase() === logChan.toLowerCase()  || chan.id === logChan.toLowerCase());
-	if (!chan) return;
+	if (!chan) return console.log("Tidak bisa menemukan log channel.");
 	const cembed = new Discord.RichEmbed()
 		.setTitle("**~Channel Dibuat~**")
 		.setColor("#00ff00")
@@ -155,7 +155,7 @@ bot.on("channelCreate", async channel => {
 bot.on("channelDelete", async channel => {
 	const logChan = await db.fetch(`logChan_${channel.guild.id}`);
   const chan = await channel.guild.channels.find(chan => chan.name.toLowerCase() === logChan.toLowerCase()  || chan.id === logChan.toLowerCase());
-	if (!logs) return console.log("Can't find logs channel.");
+	if (!chan) return console.log("Tidak bisa menemukan log channel.");
 
 	const cembed = new Discord.RichEmbed()
   .setTitle("**~Channel Dihapus~**")
@@ -163,7 +163,7 @@ bot.on("channelDelete", async channel => {
   .addField("Tipe Channel:",`**${channel.type} channel**`)
   .addField("Nama Channel:" ,`**#${channel.name}**`)
   .setTimestamp(new Date());
-	logs.send(cembed)
+	chan.send(cembed)
 });
 
 
