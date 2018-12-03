@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) =>{
   
-    if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('This requires you to have a role with the Administrator Permissions`')
+    if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Kamu Harus Memiliki Administrator Permission.')
     const role = args[0];
   
   let prole = new Discord.RichEmbed()
