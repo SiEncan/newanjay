@@ -120,14 +120,17 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
 
 bot.on('messageDelete', async (message) => {
-    const log = message.guild.channels.find('name', 'log');
-    if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
-        await message.guild.createChannel('log', 'text');
-    }
-    if (!log) {
-        return console.log('The logs channel does not exist and cannot be created')
-    }
-    const logembed = new Discord.RichEmbed()
+    let log = JSON.parse(fs.readFileSync("./log.json", "utf8"));
+	if (!log[member.guild.id]) { // jika tidak ada autorole yang di set, agar tidak error saat ada yang join
+		log[member.guild.id] = {
+			log: botconfig.log
+		};
+	}
+	var logs = log[member.guild.id].logs;
+	if (!logs) return; // jika logs 0 maka akan dihentikan dan tidak menyebabkan error
+
+
+	const logembed = new Discord.RichEmbed()
         .setTitle('**~Pesan Dihapus~**')
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .addField("Pesan:", `${message.content}`)
@@ -138,6 +141,7 @@ bot.on('messageDelete', async (message) => {
         .setTimestamp();
 
     log.send(logembed);
+  
 })
 
 
