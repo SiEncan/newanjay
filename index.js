@@ -53,10 +53,6 @@ bot.on('guildMemberAdd', async member => {
 bot.on("guildMemberAdd", async member => {
   console.log(`${member} Joined The Server.`);
   const welChan = await db.fetch(`welChan_${member.guild.id}`);
-  const welText = await db.fetch(`welText_${member.guild.id}`);
-  
-  const text = await welText
-    if (!text) return;
   
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return;
