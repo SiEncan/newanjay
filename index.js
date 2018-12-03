@@ -122,8 +122,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 bot.on('messageDelete', async (message) => {
     const logChan = await db.fetch(`logChan_${message.guild.id}`);
     const channel = await message.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
-        await message.guild.createChannel('log', 'text');
-    }
+  
     if (!channel) return;
     const logembed = new Discord.RichEmbed()
         .setTitle('**~Pesan Dihapus~**')
@@ -141,7 +140,7 @@ bot.on('messageDelete', async (message) => {
 
 
 bot.on("channelCreate", async channel => {
-  var logs = channel.guild.channels.find(c => c.name === 'log');
+  const logChan =  awaitchannel.guild.channels.find(c => c.name === 'log');
 	if (!logs) return console.log("Can't find logs channel.");
 	const cembed = new Discord.RichEmbed()
 		.setTitle("**~Channel Dibuat~**")
