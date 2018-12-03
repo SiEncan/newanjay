@@ -70,7 +70,30 @@ bot.on("guildMemberRemove", async member => {
 
 })
 
+bot.on('messageUpdate', async (oldMessage, newMessage, message) => {
+  let log = message.guild.channels.find('name', 'log');
+    if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
+        await message.guild.createChannel('log', 'text');
+    }
+    if (!log) {
+        return console.log('The logs channel does not exist and cannot be created')
+    }
 
+   if(newMessage.content != "ew"){
+       const mesembed = new Discord.RichEmbed()
+        .setTitle('**~Pesan Dihapus~**')
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .addField("Pesan Lama:", `${oldMessage}`)
+	.addField("Pesan Baru:", `${newMessage}`)
+        .addField("Di Channel:", `${message.channel}`)
+        .addField("Dikirim Oleh:", `${message.author.tag}`)
+        .setColor(`#ff0a0a`)
+        .setFooter(`ID:${message.channel.id}`)
+        .setTimestamp();
+
+    log.send(mesembed);
+  }
+})
        
 bot.on('voiceStateUpdate', async (oldMember, newMember) => {
   // Here I'm storing the IDs of their voice channels, if available
