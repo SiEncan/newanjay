@@ -120,7 +120,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
 
 bot.on('messageDelete', async (message) => {
-    const log = message.guild.channels.find('name', 'log');
+    const log = await db.fetch(`logChan_${message.guild.i});
     if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
         await message.guild.createChannel('log', 'text');
     }

@@ -10,8 +10,8 @@ module.exports.run = async (bot, message, args) =>{
   .setTitle(`~Log Channel~`)
   .setColor(`#ff0000`)
   .addField("Error ❌", `Sertakan Nama Channel Yang Akan Digunakan Sebagai Log Channel.`)
-  .addField("Gunakan:", `welcome [nama channel]`)
-  .addField("Contoh:", `welcome Selamat-Datang`)
+  .addField("Gunakan:", `logchannel [nama channel]`)
+  .addField("Contoh:", `logchannel logs`)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
 
@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) =>{
   .setTitle(`~Log Channel~`)
   .setDescription("Berhasil Mengubah Channel ✅")
   .setColor(`#16ff16`)
-  .addField("Welcome-Leave Channel diubah menjadi:", `\`${channel}\``)
+  .addField("Log Channel diubah menjadi:", `\`${channel}\``)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
   
