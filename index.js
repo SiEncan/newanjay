@@ -120,13 +120,11 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
 
 bot.on('messageDelete', async (message) => {
-    const log = await db.fetch(`logChan_${message.guild.i});
-    if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
+    const logChan = await db.fetch(`logChan_${message.guild.id}`);
+    const channel = await message.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
         await message.guild.createChannel('log', 'text');
     }
-    if (!log) {
-        return console.log('The logs channel does not exist and cannot be created')
-    }
+    if (!channel) return;
     const logembed = new Discord.RichEmbed()
         .setTitle('**~Pesan Dihapus~**')
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
@@ -137,7 +135,7 @@ bot.on('messageDelete', async (message) => {
         .setFooter(`ID:${message.channel.id}`)
         .setTimestamp();
 
-    log.send(logembed);
+    channel.send(logembed);
 })
 
 
