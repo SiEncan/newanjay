@@ -26,7 +26,7 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 function changing_status() {
-    let status = [`Ketik *help`, `Melayani ${bot.users.size} User 👥`, `https://discord.gg/WaNhKGF`, `Berada di ${bot.guilds.size} Server 🌏`, `Default Prefix: (*)`]
+    let status = [`Ketik *help`, `Melayani ${bot.users.size} User 👥`, `Berada di ${bot.guilds.size} Server 🌏`, `Default Prefix: (*)`]
     let random = status[Math.floor(Math.random() * status.length)]
     bot.user.setActivity(random, { type: 'STREAMING', url: `https://www.twitch.tv/Anjay.Corp`});
 }
