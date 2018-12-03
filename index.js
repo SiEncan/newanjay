@@ -37,18 +37,17 @@ bot.on("ready", () => {
 
 });
 
-bot.on('guildMemberAdd', async member => {
-    const autoRole = await db.fetch(`autoRole_${member.guild.id}`);
-  
-    const role = await member.guild.roles.find(role => role.name.toLowerCase() === autoRole.toLowerCase()  || role.id === autoRole.toLowerCase());
-    if (!role) return;
-
-    try {
-    member.addRole(role);
-    } catch (e) {
-      console.log(e.stack);
-     }
-})
+bot.on("guildMemberAdd", member => {
+	let autorole = JSON.parse(fs.readFileSync("./autorole.json", "utf8"));
+	if (!autorole[member.guild.id]) { // jika tidak ada autorole yang di set, agar tidak error saat ada yang join
+		autorole[member.guild.id] = {
+			autorole: botconfig.autorole
+		};
+	}
+	var role = autorole[member.guild.id].role;
+	if (!role) return; // jika autorole 0 maka akan dihentikan dan tidak menyebabkan error
+	member.addRole(role);
+});
 
 bot.on("guildMemberAdd", async member => {
   console.log(`${member} Joined The Server.`);
