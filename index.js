@@ -57,15 +57,17 @@ bot.on("guildMemberAdd", async member => {
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return;
 
-  welChan.send(`WOW! , ${member} Has Arrived To Their Destiny!`);
+  channel.send(`WOW! , ${member} Has Arrived To Their Destiny!`);
 });
 
 bot.on("guildMemberRemove", async member => {
-
   console.log(`${member.id} Left The Server.`);
+  const welChan = await db.fetch(`welChan_${member.guild.id}`);
+  
+  const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
+    if (!channel) return;
 
-  let welcomechannel = member.guild.channels.find(`name`, "welcome-to-your-destiny");
-  welcomechannel.send(`${member} Has Left The Server.`);
+  channel.send(`${member} Has Left The Server.`);
 
 })
 

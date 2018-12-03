@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) =>{
     const channel = args[0];
   
   let pchan = new Discord.RichEmbed()
-  .setTitle(`~Welcome Channel~`)
+  .setTitle(`~Welcome-Leave Channel~`)
   .setColor(`#ff0000`)
   .addField("Error ❌", `Sertakan Nama Channel Yang Akan Digunakan Sebagai Welcome Channel.`)
   .addField("Gunakan:", `welcome [nama channel]`)
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) =>{
     db.set(`welChan_${message.guild.id}`, channel);
   
   let bchan = new Discord.RichEmbed()
-  .setTitle(`~Autorole~`)
+  .setTitle(`~Welcome-Leave Channel~`)
   .setDescription("Berhasil Mengubah Channel ✅")
   .setColor(`#16ff16`)
   .addField("Welcome Channel diubah menjadi:", `\`${channel}\``)

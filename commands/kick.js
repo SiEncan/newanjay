@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) =>{
     let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kUser) message.channel.send("Tidak Dapat Menemukan User!");
     let kReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Kamu Tidak Memiliki Permission.");
+    if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Kamu Harus Memiliki Administrator Permission.");
     if(kUser.hasPermission("ADMINISTRATOR")) return message.channel.send("User Tersebut Tidak Dapat DiKick!");
 
     let kickEmbed = new Discord.RichEmbed()

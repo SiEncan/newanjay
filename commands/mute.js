@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!tomute) return message.reply("Tidak Dapat Menemukan User");
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Kamu Tidak Memiliki Permission.");
+  if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Kamu Harus Memiliki Administrator Permission.");
   if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("User Tersebut Tidak Dapat DiMute!");
   let muterole = message.guild.roles.find(`name`, "muted");
   //start of create role
