@@ -70,6 +70,8 @@ bot.on("guildMemberRemove", async member => {
 
 })
 
+
+       
 bot.on('voiceStateUpdate', async (oldMember, newMember) => {
   // Here I'm storing the IDs of their voice channels, if available
   let oldChannel = oldMember.voiceChannel ? oldMember.voiceChannel.name : null;
@@ -115,6 +117,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
   }
 });
+
 
 bot.on('messageDelete', async (message) => {
     const log = message.guild.channels.find('name', 'log');
