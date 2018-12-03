@@ -118,31 +118,6 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 });
 
 
-bot.on('messageUpdate', async (oldMessage, newMessage, message) => {
-  if(newMessage.content != "ew"){
-  let log = message.guild.channels.find('name', 'log');
-    if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
-        await message.guild.createChannel('log', 'text');
-    }
-    if (!log) {
-        return console.log('The logs channel does not exist and cannot be created')
-    }
-
-   
-       const mesembed = new Discord.RichEmbed()
-        .setTitle('**~Pesan Dihapus~**')
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .addField("Pesan Lama:", `${oldMessage.content}`)
-	      .addField("Pesan Baru:", `${newMessage.content}`)
-        .addField("Di Channel:", `${message.channel}`)
-        .addField("Dikirim Oleh:", `${message.author.tag}`)
-        .setColor(`#ff0a0a`)
-        .setFooter(`ID:${message.channel.id}`)
-        .setTimestamp();
-
-    log.send(mesembed);
-  }
-})
 
 bot.on('messageDelete', async (message) => {
     const log = message.guild.channels.find('name', 'log');
