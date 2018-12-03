@@ -54,7 +54,6 @@ exports.run = function(bot, message, args) {
     .then(songData => {
       const embed = new Discord.RichEmbed()
         .setColor(0x00AE86)
-        .setTitle(`Lyrics for: ${songData[0]}`)
         .setDescription(songData[1]);
       return message.channel.send({embed});
     })
