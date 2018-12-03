@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 exports.run = async (bot, message, args) => {
-	if (!message.member.hasPermission("MANAGE_ROLES")) return message.reply("Maaf kamu tidak bisa menggunakan perintah ini!");
+	if (!message.member.hasPermission("MANAGE_ROLES")) return message.reply("Kamu Harus Memiliki Manage Roles Permission.");
 	let autorole = JSON.parse(fs.readFileSync("./autorole.json", "utf8"));
 	if (!args[0]) { // jika tidak ada argument makan autorole akan dimatikan
 		autorole[message.guild.id] = {
