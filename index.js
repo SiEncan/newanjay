@@ -70,7 +70,6 @@ bot.on("guildMemberRemove", async member => {
 
 })
 
-
        
 bot.on('voiceStateUpdate', async (oldMember, newMember) => {
   // Here I'm storing the IDs of their voice channels, if available
@@ -120,12 +119,14 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
 
 
-bot.on('messageDelete', async (message, member) => {
-    const logChan = await db.fetch(`logChan_${member.guild.id}`);
+bot.on('messageDelete', async (message) => {
     const log = message.guild.channels.find('name', 'log');
-    const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
-    if (!channel) return;
-  
+    if (message.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
+        await message.guild.createChannel('log', 'text');
+    }
+    if (!log) {
+        return console.log('The logs channel does not exist and cannot be created')
+    }
     const logembed = new Discord.RichEmbed()
         .setTitle('**~Pesan Dihapus~**')
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
@@ -136,8 +137,10 @@ bot.on('messageDelete', async (message, member) => {
         .setFooter(`ID:${message.channel.id}`)
         .setTimestamp();
 
-    logChan.send(logembed);
+    log.send(logembed);
 })
+
+
 
 bot.on("channelCreate", async channel => {
   var logs = channel.guild.channels.find(c => c.name === 'log');
