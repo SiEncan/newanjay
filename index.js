@@ -70,6 +70,7 @@ bot.on("guildMemberRemove", async member => {
 
 })
 
+
        
 bot.on('voiceStateUpdate', async (oldMember, newMember) => {
   // Here I'm storing the IDs of their voice channels, if available
@@ -119,18 +120,13 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
 
 
-bot.on('messageDelete', async (message) => {
-    let log = JSON.parse(fs.readFileSync("./log.json", "utf8"));
-	if (!log[member.guild.id]) { // jika tidak ada autorole yang di set, agar tidak error saat ada yang join
-		log[member.guild.id] = {
-			log: botconfig.log
-		};
-	}
-	var logs = log[member.guild.id].logs;
-	if (!logs) return; // jika logs 0 maka akan dihentikan dan tidak menyebabkan error
-
-
-	const logembed = new Discord.RichEmbed()
+bot.on('messageDelete', async (message, member) => {
+    const logChan = await db.fetch(`logChan_${member.guild.id}`);
+    const log = message.guild.channels.find('name', 'log');
+    const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
+    if (!channel) return;
+  
+    const logembed = new Discord.RichEmbed()
         .setTitle('**~Pesan Dihapus~**')
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .addField("Pesan:", `${message.content}`)
@@ -140,11 +136,8 @@ bot.on('messageDelete', async (message) => {
         .setFooter(`ID:${message.channel.id}`)
         .setTimestamp();
 
-    log.send(logembed);
-  
+    logChan.send(logembed);
 })
-
-
 
 bot.on("channelCreate", async channel => {
   var logs = channel.guild.channels.find(c => c.name === 'log');

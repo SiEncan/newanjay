@@ -1,55 +1,38 @@
+const db = require('quick.db');
 const Discord = require("discord.js");
-const fs = require("fs");
 
-exports.run = async (bot, message, args, channel) => {
-	if (!message.member.hasPermission("MANAGE_ROLES")) return message.reply("Kamu Harus Memiliki Manage Roles Permission.");
-	let log = JSON.parse(fs.readFileSync("./log.json", "utf8"));
-	if (!args[0]) { // jika tidak ada argument makan autorole akan dimatikan
-    
-		log[message.guild.id] = {
-			log: 0
-		};
-		fs.writeFile("./log.json", JSON.stringify(log), (err) => {
-			if (err) console.log(err);
-		});
-    
-    let prole = new Discord.RichEmbed()
+module.exports.run = async (bot, message, args) =>{
+  
+    if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Kamu Harus Memiliki Administrator Permission')
+    const channel = args[0];
+  
+  let pchan = new Discord.RichEmbed()
   .setTitle(`~Log Channel~`)
-  .setDescription(`Log Channel Dimatikan!`)
   .setColor(`#ff0000`)
-  .addField("Error ❌", `Sertakan Channel Yang Akan Digunakan Sebagai Log Channel.`)
-  .addField("Gunakan:", `autorole [nama role]`)
-  .addField("Contoh:", `autorole Member`)
+  .addField("Error ❌", `Sertakan Nama Channel Yang Akan Digunakan Sebagai Log Channel.`)
+  .addField("Gunakan:", `welcome [nama channel]`)
+  .addField("Contoh:", `welcome Selamat-Datang`)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
-  
-  message.channel.send(prole);
 
-	}
+  if (!channel) return message.channel.send(pchan);
+
+    db.set(`logChan_${message.guild.id}`, channel);
   
-	if (args[0]) { // jika ada argumen maka akan dijadikan autorole
-		let roles = args.join(" ");
-		let role = message.guild.roles.find("name", roles);
-		log[message.guild.id] = {
-			log: channel.id // yang diambil hanya id nya saja
-		};
-		fs.writeFile("./log.json", JSON.stringify(log), (err) => {
-			if (err) console.log(err)
-		});
-    
-    let brole = new Discord.RichEmbed()
+  let bchan = new Discord.RichEmbed()
   .setTitle(`~Log Channel~`)
   .setDescription("Berhasil Mengubah Channel ✅")
   .setColor(`#16ff16`)
-  .addField("Log Channel diubah menjadi:", `**${log.name}**`)
-  .addField("Log Channel Diubah Oleh:", `${message.author.username}`)
+  .addField("Welcome-Leave Channel diubah menjadi:", `\`${channel}\``)
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
   
-    message.channel.send(brole);
-	}
+    message.channel.send(bchan);
+  
+  
 }
 
-exports.help = {
-	name: "logchannel"
-}
+module.exports.help = {
+
+  name: "logchannel"
+  }
