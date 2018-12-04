@@ -34,22 +34,13 @@ const checkSpotify = hits => {
   return hits[0].result.primary_artist.name === 'Spotify' ? hits[1].result.url : hits[0].result.url;
 };
 
-const createQuery = args => {
-  if (args === 'np') {
-    const query = getArtistTitle(data.current, {
-      defaultArtist: ' '
-    });
-    console.log(query)
-    return query.join(' ')
-  } else return args.slice(0).join(" ");
-};
 
 exports.run = function(bot, message, args) {
   data = bot.data;
 
   if (!args[0]) return message.reply(`Usage: ${exports.help.usage}`, {code:'asciidoc'});
 
-  const query = createQuery(args[0]);
+  const query = args.slice(0).join(" ");
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
     .then(songData => {
       const embed = new Discord.RichEmbed()
@@ -58,14 +49,13 @@ exports.run = function(bot, message, args) {
       return message.channel.send({embed});
     })
     .catch(err => {
-      message.channel.send(`No lyrics found for: ${query} 🙁`, {code:'asciidoc'});
+      message.channel.send(`Tidak Dapat Menemukan Lirik Untuk: ${query} 🙁`, {code:'asciidoc'});
       console.warn(err);
     });
 };
 
 }
 exports.help = {
-  name: 'lyrics',
-  description: 'Fetches lyrics for a song.',
-  usage: 'lyrics [np | search query]'
+  name: 'lirik',
+  usage: 'lirik [Judul Musik]'
 };
