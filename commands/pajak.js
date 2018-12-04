@@ -17,6 +17,8 @@ module.exports.run = async (bot, message, args) =>{
   let pCoins = coins[pUser.id].coins;
   let sCoins = coins[message.author.id].coins;
 
+  if(pCoins < args[1]) return message.reply("Pajaknya Kegedean bos, dia kagak ada uang!");
+  
   coins[pUser.id] = {
     coins: pCoins - parseInt(args[1])
   };

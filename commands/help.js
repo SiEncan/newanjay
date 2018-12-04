@@ -50,6 +50,7 @@ module.exports.run = async (bot, message, args) =>{
   .addField("volume",`Mengatur Volume Musik`)
   .addField("queue",`Menampilkan Antrian Musik`)
   .addField("skip/s",`Melewati Musik Yang Sedang Diputar`)
+  .addField("lirik", `Mencari Lirik
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
 
