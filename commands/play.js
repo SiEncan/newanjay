@@ -88,8 +88,11 @@ async function play(bot, ops, data, message, args, info) {
 
     bot.channels.get(data.queue[0].announceChannel)
 
-    let convert = (input) => {
+    let convert = async(input) => {
+    if(input < 3600) {
+
     let h = input >= 3600 ? Math.floor(input / 3600) : 0;
+    input %= 3600;
     let m = input >= 60 ? Math.floor(input / 60) : 0;
     let s = input % 60;
     
@@ -98,7 +101,15 @@ async function play(bot, ops, data, message, args, info) {
     s = check(s);
 
     return h + ":" + m + ":" + s;
-}
+} else {
+
+    let m = input >= 60 ? Math.floor(input / 60) : 0;
+    let s = input % 60;
+
+    m = check(m);
+    s = check(s); 
+  return m + ":" + s;
+  }
 
 let check = (input) => {
     return input < 10 ? "0" + input : input;
@@ -127,9 +138,11 @@ let check = (input) => {
     data.dispatcher.once('end', function() {
       finish(bot, ops, this);
     });
+      
+    }
 
 }
-
+    
 function finish(bot, ops, dispatcher) {
 
   let fetched = ops.active.get(dispatcher.guildID);
@@ -149,6 +162,7 @@ function finish(bot, ops, dispatcher) {
       let vc = bot.guilds.get(dispatcher.guildID).me.voiceChannel;
 
   }
+
 
 }
 
