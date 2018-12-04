@@ -41,7 +41,7 @@ const createQuery = args => {
     });
     console.log(query)
     return query.join(' ')
-  } else return args[0];
+  } else return args.slice(0).join(" ");
 };
 
 exports.run = function(bot, message, args) {
