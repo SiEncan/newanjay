@@ -43,11 +43,10 @@ exports.run = function(bot, message, args) {
   const query = args.slice(0).join(" ");
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
     .then(songData => {
+    if (string.length(2000)) {
       const embed = new Discord.RichEmbed()
         .setColor(0x00AE86)
-        .setDescription(songData[1].slice(1, 1999))   
-        .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
-        .setTimestamp();
+        .setDescription(songData[1].slice(1, 1999));
        message.channel.send(embed);
     
     const cembed = new Discord.RichEmbed()
@@ -56,7 +55,8 @@ exports.run = function(bot, message, args) {
         .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
         .setTimestamp();
       return message.channel.send(cembed);
-    })
+  } else return message.channel.send(embed)    
+    
     .catch(err => {
       message.channel.send(`Lapor Komandan Lirik Untuk **${query}** Tidak Dapat Ditemukan Atau Lirik Kepanjangan 🙁`, {code:'asciidoc'});
       console.warn(err);
