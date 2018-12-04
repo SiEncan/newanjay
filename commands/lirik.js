@@ -45,13 +45,13 @@ exports.run = function(bot, message, args) {
     .then(songData => {
       const embed = new Discord.RichEmbed()
         .setColor(0x00AE86)
-        .setDescription(songData[1])    
+        .setDescription(songData[1])   
         .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
         .setTimestamp();
-      return message.channel.send({embed});
+      return message.channel.send(embed);
     })
     .catch(err => {
-      message.channel.send(`Tidak Dapat Menemukan Lirik Untuk: ${query} 🙁`, {code:'asciidoc'});
+      message.channel.send(`Lapor Komandan Lirik Untuk **${query}** Tidak Dapat Ditemukan Atau Lirik Kepanjangan 🙁`, {code:'asciidoc'});
       console.warn(err);
     });
 };
