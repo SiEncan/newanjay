@@ -49,7 +49,7 @@ exports.run = function(bot, message, args) {
         .setDescription(songData[1])   
         .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
         .setTimestamp();
-    console.log(songData[0])
+    console.log(result)
       return message.channel.send(embed);
     })
     .catch(err => {
