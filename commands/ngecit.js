@@ -17,10 +17,6 @@ module.exports.run = async (bot, message, args) =>{
   let pCoins = coins[pUser.id].coins;
   let sCoins = coins[message.author.id].coins;
 
-  coins[message.author.id] = {
-    coins: sCoins - parseInt(args[1])
-  };
-
   coins[pUser.id] = {
     coins: pCoins + parseInt(args[1])
   };

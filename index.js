@@ -210,13 +210,13 @@ bot.on("message", async message => {
   });
   let coinEmbed =  new Discord.RichEmbed()
   .setAuthor(`+${coinAmt} Cash 💰`)
-  .setDescription(`<@${message.author.id}>`)
+  .setDescription(`${message.author.username}`)
   .setColor("#13c10d");
 
   message.channel.send(coinEmbed).then(msg => msg.delete(4000));
   }
 
-  let xpAdd = Math.floor(Math.random() * 7) + 8;
+  let xpAdd = Math.floor(Math.random() * 4) + 1;
   console.log(xpAdd);
 
   if(!xp[message.author.id]){
@@ -229,7 +229,7 @@ bot.on("message", async message => {
 
   let curxp = xp[message.author.id].xp;
   let curlvl = xp[message.author.id].level;
-  let nxtLvl = xp[message.author.id].level * 300;
+  let nxtLvl = xp[message.author.id].level * 500;
   xp[message.author.id].xp =  curxp + xpAdd;
   if(nxtLvl <= xp[message.author.id].xp){
     xp[message.author.id].level = curlvl + 1;
