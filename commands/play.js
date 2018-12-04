@@ -49,13 +49,16 @@ module.exports.run = async (bot, message, args, ops) =>{
   else {
 
     let convert = (input) => {
+    let h = input >= 3600 ? Math.floor(input / 3600) : 0;
+    input %= 3600;
     let m = input >= 60 ? Math.floor(input / 60) : 0;
     let s = input % 60;
-
+    
+    h = check(h);
     m = check(m);
     s = check(s);
 
-    return m + ":" + s;
+    return h + ":" + m + ":" + s;
 }
 
 let check = (input) => {
