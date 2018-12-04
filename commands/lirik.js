@@ -43,10 +43,9 @@ exports.run = function(bot, message, args) {
   const query = args.slice(0).join(" ");
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
     .then(songData => {
-    if (songData[1].length(2000)) {
       const embed = new Discord.RichEmbed()
         .setColor(0x00AE86)
-        .setDescription(songData[1].slice(1, 1999));
+        .setDescription(songData[1].slice(0, 1999));
        message.channel.send(embed);
     
     const cembed = new Discord.RichEmbed()
@@ -55,14 +54,6 @@ exports.run = function(bot, message, args) {
         .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
         .setTimestamp();
       return message.channel.send(cembed);
-  } else {    
-    const cembed = new Discord.RichEmbed()
-        .setColor(0x00AE86)
-        .setDescription(songData[1])   
-        .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
-        .setTimestamp();
-      return message.channel.send(cembed);
-         };
   
     });
 };
