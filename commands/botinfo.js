@@ -2,11 +2,9 @@ const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) =>{
 
-  let totalSeconds = (bot.uptime / 1000);
-let hours = Math.floor(totalSeconds / 3600);
-totalSeconds %= 3600;
-let minutes = Math.floor(totalSeconds / 60);
-let seconds = totalSeconds % 60;
+        let hours = Math.floor(bot.uptime / 3600000) % 24;
+      let minutes = Math.floor(bot.uptime / 60000) % 60;
+      let seconds = Math.floor(bot.uptime / 1000) % 60;
   
   
   let bicon = bot.user.displayAvatarURL;
