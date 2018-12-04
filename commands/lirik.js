@@ -55,7 +55,12 @@ exports.run = function(bot, message, args) {
         .setTimestamp();
       return message.channel.send(cembed);
   
-    });
+    })
+  .catch(err => {
+      message.channel.send(`Tidak Bisa Menemukan Lirik Untuk: ${query}`, {code:'asciidoc'});
+      console.warn(err);
+    })
+  
 };
 
 }
