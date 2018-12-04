@@ -39,6 +39,7 @@
     "yt-search": "^0.4.1",
     "ytdl-core": "^0.28.0",
     "ytdl-getinfo": "^1.1.0",
-    "genius-lyrics.js": "^0.0.1"
+    "genius-lyrics.js": "^0.0.1",
+    "p-event": "^2.1.0"
   }
 }

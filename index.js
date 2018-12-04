@@ -1,3 +1,16 @@
+const express = require('express');
+const http = require('http');
+const app = express();
+// 5 Minute Ping Times
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require ("fs");
@@ -39,13 +52,13 @@ bot.on("ready", () => {
 
 bot.on("guildMemberAdd", member => {
 	let autorole = JSON.parse(fs.readFileSync("./autorole.json", "utf8"));
-	if (!autorole[member.guild.id]) { // jika tidak ada autorole yang di set, agar tidak error saat ada yang join
+	if (!autorole[member.guild.id]) {
 		autorole[member.guild.id] = {
 			autorole: botconfig.autorole
 		};
 	}
 	var role = autorole[member.guild.id].role;
-	if (!role) return; // jika autorole 0 maka akan dihentikan dan tidak menyebabkan error
+	if (!role) return;
 	member.addRole(role);
 });
 
