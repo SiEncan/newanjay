@@ -71,17 +71,21 @@ bot.on("guildMemberRemove", async member => {
 })
 
        
-bot.on('voiceStateUpdate', async (oldMember, newMember) => {
+bot.on('voiceStateUpdate', async (oldMember, newMember,) => {
   // Here I'm storing the IDs of their voice channels, if available
   let oldChannel = oldMember.voiceChannel ? oldMember.voiceChannel.name : null;
   let newChannel = newMember.voiceChannel ? newMember.voiceChannel.name : null;
   if (oldChannel == newChannel) return; // If there has been no change, exit
 
   // Here I'm getting the channel, just replace VVV this VVV with the channel's ID
-  const logChan = await db.fetch(`logChan_${oldMember.guild.id}`);
-  const channel = await oldMember.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
-  
-    if (!channel) return console.log("Tidak bisa menemukan log channel");
+  let logchannel = JSON.parse(fs.readFileSync("./logchannel.json", "utf8"));
+	if (!logchannel[oldMember.guild.id]) { // jika tidak ada autorole yang di set, agar tidak error saat ada yang join
+		logchannel[oldMember.guild.id] = {
+			logchannel: botconfig.logchannel
+		};
+	}
+	var log = logchannel[oldMember.guild.id].log;
+	if (!log) return;
 
   if (oldChannel == undefined) {
     const joinvembed = new Discord.RichEmbed()
@@ -91,7 +95,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
         .setColor(`#00ff19`)
         .setTimestamp();
 
-    channel.send(joinvembed);
+    log.send(joinvembed);
   } else if (newChannel == undefined) {
       const leavevembed = new Discord.RichEmbed()
           .setTitle('~Leave Voice Channel~')
@@ -99,7 +103,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
           .addField("Voice Channel:", `${oldChannel}`)
           .setColor(`#ff0a0a`)
           .setTimestamp();
-    channel.send(leavevembed);
+    log.send(leavevembed);
   } else if (oldChannel !== null && newChannel !== null) {
     const switchvembed = new Discord.RichEmbed()
         .setTitle('~Pindah Voice Channel~')
@@ -109,7 +113,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
         .setColor(`#00e5ff`)
         .setTimestamp();
 
-    channel.send(switchvembed);
+    log.send(switchvembed);
 
   }
 });
