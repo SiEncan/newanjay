@@ -38,7 +38,7 @@ const checkSpotify = hits => {
 exports.run = function(bot, message, args) {
   data = bot.data;
 
-  if (!args[0]) return message.reply(`Usage: ${exports.help.usage}`, {code:'asciidoc'});
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
 
   const query = args.slice(0).join(" ");
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
