@@ -54,7 +54,7 @@ bot.on("guildMemberAdd", async member => {
   const welChan = await db.fetch(`welChan_${member.guild.id}`);
   
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
-    if (!channel) return;
+    if (!channel) return console.log("Tidak bisa menemukan welcome channel");
 
   channel.send(`🎉   Selamat Datang ${member}!   🎉`);
 });
@@ -64,7 +64,7 @@ bot.on("guildMemberRemove", async member => {
   const welChan = await db.fetch(`welChan_${member.guild.id}`);
   
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
-    if (!channel) return console.log("Tidak bisa menemukan log channel");
+    if (!channel) return console.log("Tidak bisa menemukan welcome channel");
 
   channel.send(`${member} Telah Keluar Dari Server.`);
 
@@ -78,13 +78,10 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
   if (oldChannel == newChannel) return; // If there has been no change, exit
 
   // Here I'm getting the channel, just replace VVV this VVV with the channel's ID
-  let log = oldMember.guild.channels.find('name', 'log');
-  if (oldMember.guild.me.hasPermission('MANAGE_CHANNELS') && !log) {
-      await oldMember.guild.createChannel('log', 'text');
-    }
-    if (!log) {
-        return console.log('The logs channel does not exist and cannot be created')
-    }
+  const logChan = await db.fetch(`logChan_${oldMember.guild.id}`);
+  const channel = await oldMember.guild.channels.find(channel => channel.name.toLowerCase() === logChan.toLowerCase()  || channel.id === logChan.toLowerCase());
+  
+    if (!channel) return console.log("Tidak bisa menemukan log channel");
 
   if (oldChannel == undefined) {
     const joinvembed = new Discord.RichEmbed()
@@ -94,7 +91,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
         .setColor(`#00ff19`)
         .setTimestamp();
 
-    log.send(joinvembed);
+    channel.send(joinvembed);
   } else if (newChannel == undefined) {
       const leavevembed = new Discord.RichEmbed()
           .setTitle('~Leave Voice Channel~')
@@ -102,7 +99,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
           .addField("Voice Channel:", `${oldChannel}`)
           .setColor(`#ff0a0a`)
           .setTimestamp();
-    log.send(leavevembed);
+    channel.send(leavevembed);
   } else if (oldChannel !== null && newChannel !== null) {
     const switchvembed = new Discord.RichEmbed()
         .setTitle('~Pindah Voice Channel~')
@@ -112,7 +109,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
         .setColor(`#00e5ff`)
         .setTimestamp();
 
-    log.send(switchvembed);
+    channel.send(switchvembed);
 
   }
 });
@@ -216,7 +213,7 @@ bot.on("message", async message => {
   message.channel.send(coinEmbed).then(msg => msg.delete(4000));
   }
 
-  let xpAdd = Math.floor(Math.random() * 4) + 1;
+  let xpAdd = Math.floor(Math.random() * 10) + 1;
   console.log(xpAdd);
 
   if(!xp[message.author.id]){
