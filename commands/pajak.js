@@ -18,10 +18,10 @@ module.exports.run = async (bot, message, args) =>{
   let sCoins = coins[message.author.id].coins;
 
   coins[pUser.id] = {
-    coins: pCoins + parseInt(args[1])
+    coins: pCoins - parseInt(args[1])
   };
 
-  message.channel.send(`${message.author} Telah Memberi ${pUser} ${args[1]} cash 💰.`);
+  message.channel.send(`${pUser} Telah Terkena Pajak, Dan ${args[1]} Cash 💰 Telah Dikurangi.`);
 
   fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
     if(err) console.log(err)
@@ -32,6 +32,6 @@ module.exports.run = async (bot, message, args) =>{
 }
 
 module.exports.help = {
-  name: "ngecit",
-  usage: "ngecit @User [Jumlah Cash]"
+  name: "pajak",
+  usage: "pay @User [Jumlah Cash]"
 }

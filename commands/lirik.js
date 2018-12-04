@@ -45,7 +45,9 @@ exports.run = function(bot, message, args) {
     .then(songData => {
       const embed = new Discord.RichEmbed()
         .setColor(0x00AE86)
-        .setDescription(songData[1]);
+        .setDescription(songData[1])    
+        .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
+        .setTimestamp();
       return message.channel.send({embed});
     })
     .catch(err => {
