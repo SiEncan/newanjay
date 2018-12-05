@@ -23,7 +23,7 @@ exports.run = async (client, message, level) => {
             msg.edit('🚬 ');
         }, 3500);
         setTimeout(() => {
-            msg.edit(`**Mantab Ea Mamang!!** :Dab: `);
+            msg.edit(`**Mantab Ea Mamang!!**`);
         }, 4000);
     });
 };
