@@ -16,6 +16,7 @@ exports.run = async (bot, message, args, tools) => {
     let timeObj = ms(cooldown - (Date.now() - lastDaily));
     
     let dailyf = new Discord.RichEmbed()
+  .setAuthor(message.author.username, message.author.avatarURL)
   .setTitle(`~Daily Cash~`)
   .setColor(`#ff0000`)
   .addField("Error ❌", `Kamu Telah Mengambil Daily Cash Hari Ini`)
@@ -27,6 +28,7 @@ exports.run = async (bot, message, args, tools) => {
 
   } else {
     let daily = new Discord.RichEmbed()
+  .setAuthor(message.author.username, message.author.avatarURL)
   .setTitle(`~Daily Cash~`)
   .setDescription(`Kamu Telah Mendapatkan ${amount} Cash 💰 dari Daily Cash`)
   .setColor(`#16ff16`)
