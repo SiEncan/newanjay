@@ -3,6 +3,8 @@ let coins = require("../coins.json");
 const fs = require("fs");
 
 exports.run = async (client, message, args) => {
+  
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
     let sCoins = coins[message.author.id].coins;
   if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
 
@@ -22,7 +24,7 @@ exports.run = async (client, message, args) => {
         message.channel.send(wEmbed);
       
       coins[message.author.id] = {
-      coins: sCoins + parseInt(args[0])
+      coins: sCoins + parseInt(args[0]) * 2
     };
       
     } else {
@@ -52,5 +54,5 @@ exports.conf = {
 exports.help = {
     name: 'slots',
     description: 'Slot Machine',
-    usage: 'slots'
+    usage: 'slots [Jumlah Cash]'
 }
