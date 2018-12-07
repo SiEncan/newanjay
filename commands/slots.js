@@ -40,9 +40,9 @@ exports.run = async (client, message, args) => {
             .setFooter('You Lost!', aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
             .addField('---------------', slots[result4] + slots[result5] + slots[result6])
-            .addField(`-->>`, slots[result1] + slots[result2] + slots[result3], true)
-            .addField(`ea`, `aa`, true)
-            .addField(slots[result7] + slots[result8] + slots[result9], '-----------')
+            .addField('↓↓↓↓↓↓↓↓↓↓↓↓', slots[result1] + slots[result2] + slots[result3])
+            .addField('↑↑↑↑↑↑↑↑↑↑↑↑', `---------------`)
+            .addField(slots[result7] + slots[result8] + slots[result9], '---------------')
             .setColor("#f4e842");
         message.channel.send(embed);
       
