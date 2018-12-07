@@ -4,73 +4,63 @@ const fs = require("fs");
 
 exports.run = async (client, message, args) => {
   
-	    var replys1 = [
-	        ":gem: : :gem: : :gem: ",
-	        ":lemon: : :lemon: : :lemon: ",
-	        ":seven: : :seven: : :seven: ",
-	        ":bell: : :bell: : :bell:",
-	        ":cherries: : :cherries: : :cherries: ",
-	        ":star: : :star: : :star: ",
-	        ":gem: : :star: : :seven: ",
-	        ":star: : :bell: : :bell:",
-	        ":star: : :star: : :cherries: ",
-	        ":gem: : :gem: : :cherries:",
-	        ":gem: : :seven: : :seven: ",
-	        ":star: : :bell: : :lemon: ",
-	        ":star: : :star: : :cherries: ",
-	        ":seven: : :star: : :star: ",
-	        ":star: : :star: : :seven: ",
-	        ":gem: : :gem: : :seven: "
-	    ];
-	    let reponse = (replys1[Math.floor(Math.random() * replys1.length)])
+  if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
+    let sCoins = coins[message.author.id].coins;
+  if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
 
-	    var replys2 = [
-	        ":gem: : :gem: : :gem: ",
-	        ":lemon: : :lemon: : :lemon: ",
-	        ":seven: : :seven: : :seven: ",
-	        ":bell: : :bell: : :bell:",
-	        ":cherries: : :cherries: : :cherries: ",
-	        ":gem: : :star: : :seven: ",
-	        ":star: : :bell: : :bell:",
-	        ":star: : :star: : :cherries: ",
-	        ":gem: : :gem: : :cherries:",
-	        ":gem: : :seven: : :seven: ",
-	        ":star: : :bell: : :lemon: ",
-	        ":star: : :star: : :cherries: ",
-	        ":seven: : :star: : :star: ",
-	        ":star: : :star: : :seven: ",
-	        ":gem: : :gem: : :seven: ",
-	        ":gem: : :cherries: : :cherries:",
-	        ":gem: : :bell: : :star:"
-	    ];
-	    let reponse2 = (replys2[Math.floor(Math.random() * replys2.length)])
-	    var replys3 = [
-	        ":lemon: : :lemon: : :lemon: ",
-	        ":bell: : :bell: : :bell:",
-	        ":cherries: : :cherries: : :cherries: ",
-	        ":star: : :star: : :star: ",
-	        ":gem: : :star: : :seven: ",
-	        ":star: : :bell: : :bell:",
-	        ":star: : :star: : :cherries: ",
-	        ":gem: : :gem: : :cherries:",
-	        ":gem: : :seven: : :seven: ",
-	        ":star: : :bell: : :lemon: ",
-	        ":star: : :star: : :cherries: ",
-	        ":seven: : :star: : :star: ",
-	        ":star: : :star: : :seven: ",
-	        ":gem: : :gem: : :seven: "
-	    ];
-	    let reponse3 = (replys3[Math.floor(Math.random() * replys3.length)])
+    let slots = ["🍎", "🍌", "🍒", "🍓", "🍈"];
+    let result1 = Math.floor((Math.random() * slots.length));
+    let result2 = Math.floor((Math.random() * slots.length));
+    let result3 = Math.floor((Math.random() * slots.length));
+    let result4 = Math.floor((Math.random() * slots.length));
+    let result5 = Math.floor((Math.random() * slots.length));
+    let result6 = Math.floor((Math.random() * slots.length));
+    let result7 = Math.floor((Math.random() * slots.length));
+    let result8 = Math.floor((Math.random() * slots.length));
+    let result9 = Math.floor((Math.random() * slots.length));
+    let name = message.author.displayName;
+    let aicon = message.author.displayAvatarURL;
 
-	    const embed = new Discord.RichEmbed()
-	        .setColor("#FE0101")
-	        .setTitle(`**[ :slot_machine: @${message.author.tag} launched the slot machine! :slot_machine: ]**`)
-	        .addField("**-------------------**", "** **")
-	        .addField(`${reponse} \n \n${reponse2}**<** \n \n${reponse3}`, `** **`)
-	        .addField("**-------------------**", "** **")
-	        .setDescription("** **")
-	    message.channel.send(embed)
+    if (slots[result1] === slots[result2] && slots[result3]) {
+        let wEmbed = new Discord.RichEmbed()
+            .setFooter("You Won!", aicon)
+            .setTitle(':slot_machine:Slots:slot_machine:')
+            .addField('Result:', slots[result4] + slots[result5] + slots[result6], true)
+            .addField('Result:', slots[result1] + slots[result2] + slots[result3], true)
+            .addField('Result:', slots[result7] + slots[result8] + slots[result9], true)
+            .setColor("#f4e842");
+        message.channel.send(wEmbed);
+      
+      coins[message.author.id] = {
+      coins: sCoins + parseInt(args[0]) * 2
+    };
+      
+    } else {
+        let embed = new Discord.RichEmbed()
+            .setFooter('You Lost!', aicon)
+            .setTitle(':slot_machine:Slots:slot_machine:')
+            .addField('---------------', slots[result4] + slots[result5] + slots[result6])
+            .addField(`-->>`, slots[result1] + slots[result2] + slots[result3], true)
+            .addField(`ea`, `aa`, true)
+            .addField(slots[result7] + slots[result8] + slots[result9], '-----------')
+            .setColor("#f4e842");
+        message.channel.send(embed);
+      
+      let sCoins = coins[message.author.id].coins;
+      coins[message.author.id] = {
+      coins: sCoins - parseInt(args[0])
+    };
+    }
+
+    fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
+      if(err) console.log(err)
+    });
 }
+
+
+exports.conf = {
+    aliases: []
+};
 
 exports.help = {
     name: 'slots',
