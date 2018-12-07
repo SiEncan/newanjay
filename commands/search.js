@@ -14,23 +14,23 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     resp += `\n**Ketik Angka Dari** \`1-${videos.length}\``;
 
-    message.channel.send(resp).then(msg => msg.delete(2000));
-    setTimeout(resp, 2000);
+    message.channel.send(resp)
+    
     const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
 
     collector.videos = videos;
 
     collector.once('collect', function(m) {
-
+    
       let commandFile = require(`./play.js`);
       commandFile.run(bot, message, [this.videos[parseInt(m.content)-1].url], ops);
 
     });
-
+    
 
   });
-
+  
 }
 
   module.exports.help = {
