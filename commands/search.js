@@ -3,7 +3,7 @@ const search = require('yt-search');
 module.exports.run = async (bot, message, args, ops) =>{
 
   search(args.join(' '), function(err, res) {
-    if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
+    if(err) return message.channel.send('`error.`');
 
     let videos = res.videos.slice(0, 5);
     
