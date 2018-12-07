@@ -25,9 +25,10 @@ module.exports.run = async (bot, message, args, ops) =>{
     
       let commandFile = require(`./play.js`);
       commandFile.run(bot, message, [this.videos[parseInt(m.content)-1].url], ops);
-    return;
+      
     });
     
+    setTimeout(collect, 5000, 'h
 
   });
   
