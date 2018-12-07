@@ -1,11 +1,31 @@
 const search = require('yt-search');
+const ytdl = require('ytdl-core');
 
-module.exports.run = async (bot, message, args, ops) =>{
+module.exports.run = async (bot, message, args, ops, info) =>{
 
   search(args.join(' '), function(err, res) {
     if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
 
     let videos = res.videos.slice(0, 5);
+    
+    let info = ytdl.getInfo(args[0]);
+    
+    let data = ops.active.get(message.guild.id) || {};
+
+  if(!data.connection) data.connection = message.member.voiceChannel.join();
+
+  if(!data.queue) data.queue = [];
+  data.guildID = message.guild.id;
+
+  data.queue.push({
+      songTitle: info.title,
+      requester: message.author.tag,
+      url: args[0],
+      announceChannel: message.channel.id,
+      length: info.length_seconds,
+      author: info.author.name,
+      thumbnail: info.thumbnail_url
+  });
     
     let convert = (input) => {
     let h = input >= 3600 ? Math.floor(input / 3600) : 0;
