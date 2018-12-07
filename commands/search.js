@@ -16,6 +16,9 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     message.channel.send(resp)
     
+    
+    const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
+    const collector = message.channel.createMessageCollector(filter);
     message.channel.awaitMessages(filter, {
     max: 1,
     time: 10000
@@ -23,11 +26,10 @@ module.exports.run = async (bot, message, args, ops) =>{
     collected.delete(15000);
     if (collected.first().content === 'cancel') {
       return message.reply("Canceled.");
-    }
       
-    const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
-    const collector = message.channel.createMessageCollector(filter);
-
+    }
+    
+    
     collector.videos = videos;
 
     collector.once('collect', function(m) {
@@ -37,8 +39,13 @@ module.exports.run = async (bot, message, args, ops) =>{
       
     });
     
-
+  
+  }).catch(err => {
+    message.reply("Cancelled...").then(r => r.delete(5000));
+    console.log("Waktu Pemilihan Habis. Message await cancelled.");
   });
+  
+  })
   
 }
 
