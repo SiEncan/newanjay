@@ -1,7 +1,7 @@
 const search = require('yt-search');
 
 module.exports.run = async (bot, message, args, ops) =>{
-
+  
   search(args.join(' '), function(err, res) {
     if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
 
@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args, ops) =>{
     message.channel.send(resp)
     
     
-    const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
+    const filter = m => (m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
     message.channel.awaitMessages(filter, {
     max: 1,
