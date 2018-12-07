@@ -18,9 +18,9 @@ module.exports.run = async (bot, message, args, ops) =>{
     message.channel.send(resp)
     
     
-    const filter = m => (m.content) && m.content < videos.length+1 && m.content > 0;
+    const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
-    message.channel.awaitMessages(filter, {
+    message.channel.awaitMessages(collector, {
     max: 1,
     time: 10000
   }).then(collected => {
@@ -41,13 +41,11 @@ module.exports.run = async (bot, message, args, ops) =>{
     });
     
   
-  }).catch(err => {
-    message.reply("Waktu Pemilihan Habis Permintaan Dibatalkan").then(r => r.delete(5000));
-    console.log("Waktu Pemilihan Habis. Message await cancelled.");
-  });
+  
   
   })
   
+    })
 }
 
   module.exports.help = {
