@@ -13,6 +13,7 @@ module.exports.run = async (bot, message, args, ops) =>{
     };
 
     resp += `\n**Ketik Angka Dari** \`1-${videos.length}\``;
+    resp += `\n**Ketik "__cancel__" Untuk Membatalkan Permintaan**`;
 
     message.channel.send(resp)
     
@@ -25,7 +26,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   }).then(collected => {
     collected.delete(15000);
     if (collected.first().content === 'cancel') {
-      return message.reply("Canceled.");
+      return message.reply("Permintaan Dibatalkan.");
       
     }
     
@@ -41,7 +42,7 @@ module.exports.run = async (bot, message, args, ops) =>{
     
   
   }).catch(err => {
-    message.reply("Cancelled...").then(r => r.delete(5000));
+    message.reply("Waktu Pemilihan Habis Permintaan Dibatalkan").then(r => r.delete(5000));
     console.log("Waktu Pemilihan Habis. Message await cancelled.");
   });
   
