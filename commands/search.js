@@ -1,7 +1,7 @@
 const search = require('yt-search');
 
 module.exports.run = async (bot, message, args, ops) =>{
-  
+
   search(args.join(' '), function(err, res) {
     if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
 
@@ -13,24 +13,15 @@ module.exports.run = async (bot, message, args, ops) =>{
     };
 
     resp += `\n**Ketik Angka Dari** \`1-${videos.length}\``;
-    resp += `\n**Ketik "__cancel__" Untuk Membatalkan Permintaan**`;
 
     message.channel.send(resp)
     
     
-    const check = await.message.awaitMessage(m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
+    const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
-    message.channel.awaitMessages(collector, {
-    max: 1,
-    time: 10000
-  }).then(collected => {
-    collected.delete(15000);
-    if (collected.first().content === 'cancel') {
-      return message.reply("Permintaan Dibatalkan.");
-      
-    }
     
-    
+    channel.awaitMessages(filter, { max: 4, time: 60000, errors: ['time'] })
+
     collector.videos = videos;
 
     collector.once('collect', function(m) {
@@ -40,14 +31,12 @@ module.exports.run = async (bot, message, args, ops) =>{
       
     });
     
+
+  });
   
-  
-  
-  })
-  
-    })
 }
 
   module.exports.help = {
     name: "search"
   }
+
