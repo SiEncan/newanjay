@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
     let sCoins = coins[message.author.id].coins;
   if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
 
-    let slots = ["🏀", "🍌", "🍒", "🍓", "🍈"];
+    let slots = ["🏀", "⚽", "🎱", "🏐", "⚾"];
     let result1 = Math.floor((Math.random() * slots.length));
     let result2 = Math.floor((Math.random() * slots.length));
     let result3 = Math.floor((Math.random() * slots.length));
