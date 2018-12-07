@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args, ops) =>{
     if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
 
     let videos = res.videos.slice(0, 5);
-
+    
     let resp = '';
     for(var i in videos) {
        resp += `**[${parseInt(i)+1}]:** \`${videos[i].title}\`\n`;
@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args, ops) =>{
     resp += `\n**Ketik Angka Dari** \`1-${videos.length}\``;
 
     message.channel.send(resp).then(msg => msg.delete(2000));
-
+    setTimeout(resp, 2000);
     const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
 
