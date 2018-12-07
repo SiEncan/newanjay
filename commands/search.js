@@ -28,7 +28,6 @@ module.exports.run = async (bot, message, args, ops) =>{
       
     });
     
-    setTimeout(collect, 5000, 'h
 
   });
   
