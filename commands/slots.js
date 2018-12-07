@@ -32,6 +32,7 @@ exports.run = async (client, message, args) => {
             .setFooter('You Lost!', aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
             .addField('Result', slots[result1] + slots[result2] + slots[result3], true)
+            .addField(`${slots[result1]}<`, `a`)
             .setColor("#f4e842");
         message.channel.send(embed);
       
