@@ -25,9 +25,9 @@ exports.run = async (client, message, args) => {
         let wEmbed = new Discord.RichEmbed()
             .setFooter("You Won!", aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('Result:', slots[result4] + slots[result5] + slots[result6], true)
-            .addField('Result:', slots[result1] + slots[result2] + slots[result3], true)
-            .addField('Result:', slots[result7] + slots[result8] + slots[result9], true)
+            .addField('Result:', slots[result4] + slots[result5] + slots[result6])
+            .addField('Result:', slots[result1] + slots[result2] + slots[result3])
+            .addField('Result:', slots[result7] + slots[result8] + slots[result9])
             .setColor("#f4e842");
         message.channel.send(wEmbed);
       
@@ -39,10 +39,9 @@ exports.run = async (client, message, args) => {
         let embed = new Discord.RichEmbed()
             .setFooter('You Lost!', aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('---------------', slots[result4] + slots[result5] + slots[result6])
-            .addField(`-->>`, slots[result1] + slots[result2] + slots[result3], true)
-            .addField(`ea`, `aa`, true)
-            .addField(slots[result7] + slots[result8] + slots[result9], '-----------')
+            .addField('Kamu Kalah', `'''`)
+            .addField(slots[result4] + slots[result5] + slots[result6], slots[result1] + slots[result2] + slots[result3])
+            .addField('^^^^', slots[result7] + slots[result8] + slots[result9])
             .setColor("#f4e842");
         message.channel.send(embed);
       
