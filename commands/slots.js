@@ -12,12 +12,6 @@ exports.run = async (client, message, args) => {
     let result1 = Math.floor((Math.random() * slots.length));
     let result2 = Math.floor((Math.random() * slots.length));
     let result3 = Math.floor((Math.random() * slots.length));
-    let result4 = Math.floor((Math.random() * slots.length));
-    let result5 = Math.floor((Math.random() * slots.length));
-    let result6 = Math.floor((Math.random() * slots.length));
-    let result7 = Math.floor((Math.random() * slots.length));
-    let result8 = Math.floor((Math.random() * slots.length));
-    let result9 = Math.floor((Math.random() * slots.length));
     let name = message.author.displayName;
     let aicon = message.author.displayAvatarURL;
 
@@ -25,9 +19,7 @@ exports.run = async (client, message, args) => {
         let wEmbed = new Discord.RichEmbed()
             .setFooter("You Won!", aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('Result:', slots[result4] + slots[result5] + slots[result6])
-            .addField('Result:', slots[result1] + slots[result2] + slots[result3])
-            .addField('Result:', slots[result7] + slots[result8] + slots[result9])
+            .addField('Result:', slots[result1] + slots[result2] + slots[result3], true)
             .setColor("#f4e842");
         message.channel.send(wEmbed);
       
@@ -39,9 +31,7 @@ exports.run = async (client, message, args) => {
         let embed = new Discord.RichEmbed()
             .setFooter('You Lost!', aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('Kamu Kalah', `'''`)
-            .addField(slots[result4] + slots[result5] + slots[result6], slots[result1] + slots[result2] + slots[result3])
-            .addField('^^^^', slots[result7] + slots[result8] + slots[result9])
+            .addField('Result', slots[result1] + slots[result2] + slots[result3], true)
             .setColor("#f4e842");
         message.channel.send(embed);
       
