@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     resp += `\n**Ketik Angka Dari** \`1-${videos.length}\``;
 
-    message.channel.send(resp)
+    message.channel.send(resp).then(msg => msg.delete(2000));
 
     const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
