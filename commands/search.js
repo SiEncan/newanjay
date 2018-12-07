@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   search(args.join(' '), function(err, res) {
     if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
 
-    let videos = res.videos.slice(0, 5);
+    let videos = res.videos.slice(1, 5);
     
     let resp = '';
     for(var i in videos) {
