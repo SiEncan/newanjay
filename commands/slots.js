@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
     let sCoins = coins[message.author.id].coins;
   if(sCoins < args[0]) return message.reply(`Cash Yang Kamu Miliki Tidak Cukup!, Kamu Harus Mempunyai Minimal ${args[0]} Cash 💰`);
 
-    let slots = ["🍎", "🍌", "🍒", "🍓", "🍈"];
+    let slots = ["🍎", "🍌", "🍒", "🍓", "🍈", ":tomato:", ":green_apple:", ":pineapple:", ":melon:"];
     let result1 = Math.floor((Math.random() * slots.length));
     let result2 = Math.floor((Math.random() * slots.length));
     let result3 = Math.floor((Math.random() * slots.length));
@@ -25,9 +25,9 @@ exports.run = async (client, message, args) => {
         let wEmbed = new Discord.RichEmbed()
             .setFooter(message.author.username, aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('----------------', `|${slots[result1]}${slots[result2]}${slots[result3]}|`, true)
-            .addField(`|${slots[result3]}${slots[result4]}${slots[result5]}| <--`, `|${slots[result7]}${slots[result8]}${slots[result9]}|`)
-            .addField(`----------------`, `Kamu Menang :smile:`)
+            .addField('----------------', `|${slots[result4]}${slots[result5]}${slots[result6]}|`, true)
+            .addField(`|${slots[result1]}${slots[result2]}${slots[result3]}| <--`, `|${slots[result7]}${slots[result8]}${slots[result9]}|`)
+            .addField(`----------------`, `Kamu Menang :smiley: `)
             .setColor("#f4e842");
         message.channel.send(wEmbed);
       
@@ -39,9 +39,9 @@ exports.run = async (client, message, args) => {
         let embed = new Discord.RichEmbed()
             .setFooter(message.author.username, aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('----------------', `|${slots[result1]}${slots[result2]}${slots[result3]}|`, true)
-            .addField(`|${slots[result3]}${slots[result4]}${slots[result5]}| <--`, `|${slots[result7]}${slots[result8]}${slots[result9]}|`)
-            .addField(`----------------`, `Kamu Kalah :(`)
+            .addField('----------------', `|${slots[result4]}${slots[result5]}${slots[result6]}|`, true)
+            .addField(`|${slots[result1]}${slots[result2]}${slots[result3]}| <--`, `|${slots[result7]}${slots[result8]}${slots[result9]}|`)
+            .addField(`----------------`, `Kamu Kalah `)
             .setColor("#f4e842");
         message.channel.send(embed);
       
