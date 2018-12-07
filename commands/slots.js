@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
         let wEmbed = new Discord.RichEmbed()
             .setFooter(message.author.username, aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('----------------', `|${slots[result4]}${slots[result5]}${slots[result6]}|`, true)
+            .addField('----------------', `|${slots[result4]}${slots[result5]}${slots[result6]}|`)
             .addField(`|${slots[result1]}${slots[result2]}${slots[result3]}| <--`, `|${slots[result7]}${slots[result8]}${slots[result9]}|`)
             .addField(`----------------`, `Kamu Menang :smiley: `)
             .setColor("#f4e842");
@@ -39,7 +39,7 @@ exports.run = async (client, message, args) => {
         let embed = new Discord.RichEmbed()
             .setFooter(message.author.username, aicon)
             .setTitle(':slot_machine:Slots:slot_machine:')
-            .addField('----------------', `|${slots[result4]}${slots[result5]}${slots[result6]}|`, true)
+            .addField('----------------', `|${slots[result4]}${slots[result5]}${slots[result6]}|`)
             .addField(`|${slots[result1]}${slots[result2]}${slots[result3]}| <--`, `|${slots[result7]}${slots[result8]}${slots[result9]}|`)
             .addField(`----------------`, `Kamu Kalah `)
             .setColor("#f4e842");
