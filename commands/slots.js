@@ -4,7 +4,6 @@ const fs = require("fs");
 
 exports.run = async (client, message, args) => {
   
-if (message.content === prefix + "slot") {
 	    var replys1 = [
 	        ":gem: : :gem: : :gem: ",
 	        ":lemon: : :lemon: : :lemon: ",
