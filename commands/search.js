@@ -19,8 +19,6 @@ module.exports.run = async (bot, message, args, ops) =>{
     
     const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
-    
-    channel.awaitMessages(filter, { max: 4, time: 60000, errors: ['time'] })
 
     collector.videos = videos;
 
