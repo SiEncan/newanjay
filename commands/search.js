@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   search(args.join(' '), function(err, res) {
     if(err) return message.channel.send('`Maaf, ada sesuatu yang salah.`');
 
-    let videos = res.videos.slice(1, 5);
+    let videos = res.videos.slice(0, 5);
     
     let resp = '';
     for(var i in videos) {
@@ -16,6 +16,15 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     message.channel.send(resp)
     
+    message.channel.awaitMessages(filter, {
+    max: 1,
+    time: 10000
+  }).then(collected => {
+    collected.delete(15000);
+    if (collected.first().content === 'cancel') {
+      return message.reply("Canceled.");
+    }
+      
     const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0;
     const collector = message.channel.createMessageCollector(filter);
 
