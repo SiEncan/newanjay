@@ -47,6 +47,7 @@ module.exports.run = async (bot, message, args, ops) =>{
       authorl: info.author.channel_url
   });
 
+  
   if(!data.dispatcher) play(bot, ops, data, message, info);
   else {
 
@@ -78,6 +79,7 @@ let num = (number, dec = 1, min = 1000) => {
   let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
   return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
 }
+
 
 
     let queueembed = new Discord.RichEmbed()
@@ -135,14 +137,7 @@ let num = (number, dec = 1, min = 1000) => {
   return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
 }
 
-  
-  let paembed = new Discord.RichEmbed()
-    .setTitle(`**Music** 🎶`)
-    .setColor(`#ff0000`)
-    .addField("Error ❌", `Kamu Harus Berada Dalam Voice Channel Yang Sama Dengan Bot.`)
-    .setFooter(message.author.tag);
 
-    if(message.member.voiceChannel !== message.guild.me.voiceChannel) return message.channel.send(paembed);
 
     let playembed = new Discord.RichEmbed()
     .setTitle(`**${data.queue[0].songTitle}**`)
