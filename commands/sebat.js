@@ -3,7 +3,7 @@ exports.run = async (client, message, level) => {
     message.channel.send('**Ngudud Dlu Ea Mamang**').then(async msg => {
         setTimeout(() => {
             msg.edit('🚬');
-        }, 750);
+        }, 500);
         setTimeout(() => {
             msg.edit('🚬 ☁ ');
         }, 1000);

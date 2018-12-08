@@ -25,11 +25,10 @@ module.exports.run = async (bot, message, args, ops) =>{
 					} catch (err) {
 						console.error(err);
 						return message.channel.send('No or invalid value entered, cancelling video selection.');
-            const collector = message.channel.createMessageCollector(filter);
 					}
 
     const collector = message.channel.createMessageCollector(filter);
-
+    var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
     collector.videos = videos;
 
     collector.once('collect', function(m) {
