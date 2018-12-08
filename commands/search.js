@@ -27,7 +27,7 @@ let check = (input) => {
     let videos = res.videos.slice(0, 5);
     let resp = '';
     for(var i in videos) {
-       resp += `**[${parseInt(i)+1}]:** \`${videos[i].title}\`  **Durasi: [${convert(videos[1].seconds)}]**\n`;
+       resp += `**[${parseInt(i)+1}]:** \`${videos[i].title}\`  **Durasi: [${convert(videos[i].seconds)}]**\n`;
       
     console.log(videos)
     };
