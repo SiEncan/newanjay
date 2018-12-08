@@ -48,7 +48,22 @@ module.exports.run = async (bot, message, args, ops) =>{
 
   if(!data.dispatcher) play(bot, ops, data, message, info);
   else {
-
+    
+    function get_views(video_id) {
+    var URL = `https://gdata.youtube.com/feeds/api/videos/${info.video_id}?v=2&alt=json`;
+    $.ajax({
+        type: "GET",
+        url: URL,
+        cache: false,
+        dataType:'jsonp',
+        success: function(data){
+          // Add your logic here. As an example it just logs it on the console
+          console.log(data.entry.yt$statistics.viewCount);
+       }
+    });
+}
+    
+    
     let convert = (input) => {
     let h = input >= 3600 ? Math.floor(input / 3600) : 0;
     input %= 3600;
