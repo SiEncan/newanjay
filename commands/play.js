@@ -48,22 +48,7 @@ module.exports.run = async (bot, message, args, ops) =>{
 
   if(!data.dispatcher) play(bot, ops, data, message, info);
   else {
-    
-    function get_views(video_id) {
-    var URL = `https://gdata.youtube.com/feeds/api/videos/${info.video_id}?v=2&alt=json`;
-    $.ajax({
-        type: "GET",
-        url: URL,
-        cache: false,
-        dataType:'jsonp',
-        success: function(data){
-          // Add your logic here. As an example it just logs it on the console
-          console.log(data.entry.yt$statistics.viewCount);
-       }
-    });
-}
-    
-    
+
     let convert = (input) => {
     let h = input >= 3600 ? Math.floor(input / 3600) : 0;
     input %= 3600;
@@ -90,7 +75,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `${info.author.name}`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
-    .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/sddefault.jpg`)
+    .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/mqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
@@ -136,7 +121,7 @@ let check = (input) => {
     .addField("Diupload Oleh:", `${data.queue[0].author}`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
     .addField("Viewer:", `${data.queue[0].view}`, true)
-    .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/sddefault.jpg`)
+    .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
