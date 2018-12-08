@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args, ops) =>{
        resp += `**[${parseInt(i)+1}]:** \`${videos[i].title}\`\n`;
     };
 
-    resp += `\n**Ketik Angka Dari** \`1-${videos.length}\``;
+    resp += `\n**Ketik Angka Dari ** \`1-${videos.length}\``;
 
     message.channel.send(resp)
     
