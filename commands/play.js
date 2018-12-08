@@ -120,7 +120,7 @@ let num = (number, dec = 1, min = 1000) => {
   let str = String(number)
   let length = str.length
   let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
-  return formatted + (length > 15 ? 'qd' : length > 12 ? 't' : length > 9 ? 'b' : length > 6 ? 'm' : length > 3 ? 'k' : '')
+  return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
 }
 
 
@@ -132,7 +132,7 @@ let num = (number, dec = 1, min = 1000) => {
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
     .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
-    .addField("Viewer:", `${num(data.queue[0].view)}`, true)
+    .addField("Viewer:", `${num(data.queue[0].view, 2)}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
