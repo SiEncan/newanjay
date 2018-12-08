@@ -1,8 +1,7 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
-let smallNumber = require("../num.js");
 
-module.exports.run = async (bot, message, args, ops, smallNumber) =>{
+module.exports.run = async (bot, message, args, ops) =>{
 
   let voiceCembed = new Discord.RichEmbed()
   .setTitle(`**Music** 🎶`)
@@ -48,7 +47,7 @@ module.exports.run = async (bot, message, args, ops, smallNumber) =>{
       authorl: info.author.channel_url
   });
 
-  if(!data.dispatcher) play(bot, ops, data, message, info, smallNumber);
+  if(!data.dispatcher) play(bot, ops, data, message, info);
   else {
 
     let convert = (input) => {
@@ -77,7 +76,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
-    .addField("Viewer:", `${smallNumber(info.player_response.videoDetails.viewCount)}`)
+    .addField("Viewer:", `${info.player_response.videoDetails.viewCount}`)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
@@ -91,7 +90,7 @@ let check = (input) => {
 
 }
 
-async function play(bot, ops, data, message, args, info, smallNumber) {
+async function play(bot, ops, data, message, args, info) {
 
     bot.channels.get(data.queue[0].announceChannel)
 
@@ -113,6 +112,16 @@ let check = (input) => {
 
 }
 
+let num = (number, dec = 1, min = 1000) => {
+  if (number === undefined || number === null) throw new Error(`Error: ${number} is not a number`)
+  if (isNaN(number)) throw new Error(`Error: ${number} is not a number`)
+  if (number > Number.MAX_SAFE_INTEGER) throw new Error(`Error: Number is too big`)
+  if (number < min) return String(number)
+  let str = String(number)
+  let length = str.length
+  let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
+  return formatted + (length > 15 ? 'qd' : length > 12 ? 't' : length > 9 ? 'b' : length > 6 ? 'm' : length > 3 ? 'k' : '')
+}
 
 
     let playembed = new Discord.RichEmbed()
@@ -123,7 +132,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
     .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
-    .addField("Viewer:", `${smallNumber(data.queue[0].view)}`, true)
+    .addField("Viewer:", `${num(data.queue[0].view)}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
