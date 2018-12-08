@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, ops) =>{
       announceChannel: message.channel.id,
       length: info.length_seconds,
       author: info.author.name,
-      thumbnail: info.thumbnail_url
+      thumbnail: info.iurlmq
   });
 
   if(!data.dispatcher) play(bot, ops, data, message, info);
@@ -74,7 +74,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `${info.author.name}`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
-    .setThumbnail(`${info.thumbnail_url}`)
+    .setThumbnail(`${info.iurlmq}`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
