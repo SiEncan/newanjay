@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   }
 
   let info = await ytdl.getInfo(args[0]);
-  
+  console.log(info)
   let data = ops.active.get(message.guild.id) || {};
 
   if(!data.connection) data.connection = await message.member.voiceChannel.join();
