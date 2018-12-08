@@ -10,6 +10,14 @@ module.exports.run = async (bot, message, args, ops) =>{
   .setFooter(message.author.tag)
 
   if(!message.member.voiceChannel) return message.channel.send(voiceCembed);
+  
+  let paembed = new Discord.RichEmbed()
+    .setTitle(`**Music** 🎶`)
+    .setColor(`#ff0000`)
+    .addField("Error ❌", `Kamu Harus Berada Dalam Voice Channel Yang Sama Dengan Bot.`)
+    .setFooter(message.author.tag);
+
+    if(message.member.voiceChannel !== message.guild.me.voiceChannel) return message.channel.send(paembed);
 
   let urlembed = new Discord.RichEmbed()
   .setTitle(`**Music** 🎶`)
@@ -88,7 +96,7 @@ let num = (number, dec = 1, min = 1000) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`, true)
-    .addField("Viewer:", `${num(info.player_response.videoDetails.viewCount, 2)}`, true)
+    .addField("Views:", `${num(info.player_response.videoDetails.viewCount, 2)}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
@@ -121,7 +129,7 @@ async function play(bot, ops, data, message, args, info) {
 
 let check = (input) => {
     return input < 10 ? "0" + input : input;
-
+  
 }
 
 let num = (number, dec = 1, min = 1000) => {
@@ -144,7 +152,7 @@ let num = (number, dec = 1, min = 1000) => {
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
     .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
-    .addField("Viewer:", `${num(data.queue[0].view, 2)}`, true)
+    .addField("Views:", `${num(data.queue[0].view, 2)}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
