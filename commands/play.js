@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
-const SmallNumber = require('small-number');
 
 module.exports.run = async (bot, message, args, ops, SmallNumber) =>{
 
