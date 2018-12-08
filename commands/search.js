@@ -16,7 +16,6 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     message.channel.send(resp)
     
-    
     const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0 && m.author.id === message.author.id;
     const collector = message.channel.createMessageCollector(filter);
 
