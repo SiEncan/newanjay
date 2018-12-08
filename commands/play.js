@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const ytdl = require('ytdl-core');
+let smallNumber = require("../num.js");
 
-module.exports.run = async (bot, message, args, ops, SmallNumber) =>{
+module.exports.run = async (bot, message, args, ops, smallNumber) =>{
 
   let voiceCembed = new Discord.RichEmbed()
   .setTitle(`**Music** 🎶`)
@@ -47,7 +48,7 @@ module.exports.run = async (bot, message, args, ops, SmallNumber) =>{
       authorl: info.author.channel_url
   });
 
-  if(!data.dispatcher) play(bot, ops, data, message, info, SmallNumber);
+  if(!data.dispatcher) play(bot, ops, data, message, info, smallNumber);
   else {
 
     let convert = (input) => {
@@ -76,7 +77,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
-    .addField("Viewer:", `${SmallNumber(info.player_response.videoDetails.viewCount)}`)
+    .addField("Viewer:", `${smallNumber(info.player_response.videoDetails.viewCount)}`)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
@@ -90,7 +91,7 @@ let check = (input) => {
 
 }
 
-async function play(bot, ops, data, message, args, info, SmallNumber) {
+async function play(bot, ops, data, message, args, info, smallNumber) {
 
     bot.channels.get(data.queue[0].announceChannel)
 
@@ -122,7 +123,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
     .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
-    .addField("Viewer:", `${SmallNumber(data.queue[0].view)}`, true)
+    .addField("Viewer:", `${smallNumber(data.queue[0].view)}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
