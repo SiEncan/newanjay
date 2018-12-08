@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, ops) =>{
       announceChannel: message.channel.id,
       length: info.length_seconds,
       author: info.author.name,
-      view: info.videoDetails.viewCount,
+      view: info.viewCount,
       id: info.video_id,
       authorl: info.author.channel_url
   });
