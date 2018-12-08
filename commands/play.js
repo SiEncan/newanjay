@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, ops) =>{
       announceChannel: message.channel.id,
       length: info.length_seconds,
       author: info.author.name,
-      view: info.viewCount,
+      view: info.videoDetails.viewCount,
       id: info.video_id,
       authorl: info.author.channel_url
   });
@@ -76,6 +76,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
+    .addField("Viewer:", `${info.videoDetails.viewCount}`)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
