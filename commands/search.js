@@ -2,7 +2,7 @@ const search = require('yt-search');
 
 module.exports.run = async (bot, message, args, ops) =>{
 
-  search(args.join(' '), async function (err, res) {
+  search(args.join(' '), function(err, res) {
     if(err) return message.channel.send('`error.`');
 
     let videos = res.videos.slice(0, 5);
@@ -16,19 +16,10 @@ module.exports.run = async (bot, message, args, ops) =>{
 
     message.channel.send(resp)
     
-    try {
-						var filter = await message.channel.awaitMessages(m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0 && m.author.id === message.author.id, {
-							maxMatches: 1,
-							time: 10000,
-							errors: ['time']
-						});
-					} catch (err) {
-						console.error(err);
-						return message.channel.send('No or invalid value entered, cancelling video selection.');
-					}
-
+    
+    const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0 && m.author.id === message.author.id;
     const collector = message.channel.createMessageCollector(filter);
-    var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+
     collector.videos = videos;
 
     collector.once('collect', function(m) {
