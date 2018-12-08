@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   }
 
   let info = await ytdl.getInfo(args[0]);
-  console.log(info)
+  
   let data = ops.active.get(message.guild.id) || {};
 
   if(!data.connection) data.connection = await message.member.voiceChannel.join();
@@ -68,6 +68,18 @@ let check = (input) => {
 
 }
 
+let num = (number, dec = 1, min = 1000) => {
+  if (number === undefined || number === null) throw new Error(`Error: ${number} is not a number`)
+  if (isNaN(number)) throw new Error(`Error: ${number} is not a number`)
+  if (number > Number.MAX_SAFE_INTEGER) throw new Error(`Error: Number is too big`)
+  if (number < min) return String(number)
+  let str = String(number)
+  let length = str.length
+  let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
+  return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
+}
+
+
     let queueembed = new Discord.RichEmbed()
     .setTitle(`**${info.title}**`)
     .setURL(`${info.video_url}`)
@@ -75,8 +87,8 @@ let check = (input) => {
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
-    .addField("Direquest Oleh:", `${message.author.tag}`)
-    .addField("Viewer:", `${info.player_response.videoDetails.viewCount}`)
+    .addField("Direquest Oleh:", `${message.author.tag}`, true)
+    .addField("Viewer:", `${num(info.player_response.videoDetails.viewCount, 2)}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);

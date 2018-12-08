@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   }
 
   let info = await ytdl.getInfo(args[0]);
-
+  
   let data = ops.active.get(message.guild.id) || {};
 
   if(!data.connection) data.connection = await message.member.voiceChannel.join();
@@ -42,20 +42,25 @@ module.exports.run = async (bot, message, args, ops) =>{
       announceChannel: message.channel.id,
       length: info.length_seconds,
       author: info.author.name,
-      thumbnail: info.thumbnail_url
+      view: info.player_response.videoDetails.viewCount,
+      id: info.video_id,
+      authorl: info.author.channel_url
   });
 
   if(!data.dispatcher) play(bot, ops, data, message, info);
   else {
 
     let convert = (input) => {
+    let h = input >= 3600 ? Math.floor(input / 3600) : 0;
+    input %= 3600;
     let m = input >= 60 ? Math.floor(input / 60) : 0;
     let s = input % 60;
-
+    
+    h = check(h);
     m = check(m);
     s = check(s);
 
-    return m + ":" + s;
+    return h + ":" + m + ":" + s;
 }
 
 let check = (input) => {
@@ -63,15 +68,28 @@ let check = (input) => {
 
 }
 
+let num = (number, dec = 1, min = 1000) => {
+  if (number === undefined || number === null) throw new Error(`Error: ${number} is not a number`)
+  if (isNaN(number)) throw new Error(`Error: ${number} is not a number`)
+  if (number > Number.MAX_SAFE_INTEGER) throw new Error(`Error: Number is too big`)
+  if (number < min) return String(number)
+  let str = String(number)
+  let length = str.length
+  let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
+  return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
+}
+
+
     let queueembed = new Discord.RichEmbed()
     .setTitle(`**${info.title}**`)
     .setURL(`${info.video_url}`)
     .setAuthor("Ditambahkan Ke Dalam Antrian 🎶:")
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
-    .addField("Diupload Oleh:", `${info.author.name}`, true)
-    .addField("Direquest Oleh:", `${message.author.tag}`)
-    .setThumbnail(`${info.thumbnail_url}`)
+    .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
+    .addField("Direquest Oleh:", `${message.author.tag}`, true)
+    .addField("Viewer:", `${num(info.player_response.videoDetails.viewCount, 2)}`, true)
+    .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
@@ -89,13 +107,16 @@ async function play(bot, ops, data, message, args, info) {
     bot.channels.get(data.queue[0].announceChannel)
 
     let convert = (input) => {
+    let h = input >= 3600 ? Math.floor(input / 3600) : 0;
+    input %= 3600;
     let m = input >= 60 ? Math.floor(input / 60) : 0;
     let s = input % 60;
-
+    
+    h = check(h);
     m = check(m);
     s = check(s);
 
-    return m + ":" + s;
+    return h + ":" + m + ":" + s;
 }
 
 let check = (input) => {
@@ -103,6 +124,16 @@ let check = (input) => {
 
 }
 
+let num = (number, dec = 1, min = 1000) => {
+  if (number === undefined || number === null) throw new Error(`Error: ${number} is not a number`)
+  if (isNaN(number)) throw new Error(`Error: ${number} is not a number`)
+  if (number > Number.MAX_SAFE_INTEGER) throw new Error(`Error: Number is too big`)
+  if (number < min) return String(number)
+  let str = String(number)
+  let length = str.length
+  let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
+  return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
+}
 
 
     let playembed = new Discord.RichEmbed()
@@ -111,9 +142,10 @@ let check = (input) => {
     .setAuthor("Memainkan Musik 🎶:")
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
-    .addField("Diupload Oleh:", `${data.queue[0].author}`, true)
-    .addField("Direquest Oleh:", `${data.queue[0].requester}`)
-    .setThumbnail(`${data.queue[0].thumbnail}`)
+    .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
+    .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
+    .addField("Viewer:", `${num(data.queue[0].view, 2)}`, true)
+    .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
@@ -145,7 +177,6 @@ function finish(bot, ops, dispatcher) {
       ops.active.delete(dispatcher.guildID);
 
       let vc = bot.guilds.get(dispatcher.guildID).me.voiceChannel;
-      if(vc) vc.leave();
 
   }
 
