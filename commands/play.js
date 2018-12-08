@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args, ops) =>{
       announceChannel: message.channel.id,
       length: info.length_seconds,
       author: info.author.name,
-      view: info.short_view_count_text,
+      view: info.viewCount,
       id: info.video_id,
       authorl: info.author.channel_url
   });
@@ -74,7 +74,7 @@ let check = (input) => {
     .setAuthor("Ditambahkan Ke Dalam Antrian 🎶:")
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
-    .addField("Diupload Oleh:", `${info.author.name}`, true)
+    .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
@@ -119,7 +119,7 @@ let check = (input) => {
     .setAuthor("Memainkan Musik 🎶:")
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
-    .addField("Diupload Oleh:", `[${data.queue[0].author}](${data.queue[0].authorl})`, true)
+    .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
     .addField("Viewer:", `${data.queue[0].view}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
