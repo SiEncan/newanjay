@@ -43,7 +43,8 @@ module.exports.run = async (bot, message, args, ops) =>{
       length: info.length_seconds,
       author: info.author.name,
       view: info.short_view_count_text,
-      id: info.video_id
+      id: info.video_id,
+      authorl: info.author.channel_url
   });
 
   if(!data.dispatcher) play(bot, ops, data, message, info);
@@ -75,7 +76,7 @@ let check = (input) => {
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `${info.author.name}`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`)
-    .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/mqdefault.jpg`)
+    .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
 
@@ -118,7 +119,7 @@ let check = (input) => {
     .setAuthor("Memainkan Musik 🎶:")
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
-    .addField("Diupload Oleh:", `${data.queue[0].author}`, true)
+    .addField("Diupload Oleh:", `[${data.queue[0].author}](${data.queue[0].authorl})`, true)
     .addField("Direquest Oleh:", `${data.queue[0].requester}`, true)
     .addField("Viewer:", `${data.queue[0].view}`, true)
     .setThumbnail(`https://img.youtube.com/vi/${data.queue[0].id}/hqdefault.jpg`)
