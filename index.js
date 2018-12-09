@@ -98,12 +98,13 @@ bot.on('guildMemberAdd', async member => {
 	// Slightly smaller text placed above the member's display name
 	ctx.font = '28px sans-serif';
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`Selamat Datang Di ${member.guild.name},`, canvas.width / 2.5, canvas.height / 3.5);
+	ctx.fillText(`Selamat Datang Di Server 
+  ${member.guild.name},`, canvas.width / 3.0, canvas.height / 4.2);
 
 	// Add an exclamation point here and below
-	ctx.font = applyText(canvas, `${member.tag}!`);
+	ctx.font = applyText(canvas, `${member.name}!`);
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${member.displayName}!`, canvas.width / 2.0, canvas.height / 1.8);
+	ctx.fillText(`${member.displayName}`, canvas.width / 2.8, canvas.height / 1.5);
 
 	ctx.beginPath();
 	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
