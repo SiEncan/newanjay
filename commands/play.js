@@ -48,7 +48,7 @@ module.exports.run = async (bot, message, args, ops) =>{
   });
 
   
-  if(!data.dispatcher) play(bot, ops, data, message, info);
+  if(!data.dispatcher) play(bot, ops, data, message, info,);
   else {
 
     let convert = (input) => {
@@ -69,6 +69,7 @@ let check = (input) => {
 
 }
 
+
 let num = (number, dec = 1, min = 1000) => {
   if (number === undefined || number === null) throw new Error(`Error: ${number} is not a number`)
   if (isNaN(number)) throw new Error(`Error: ${number} is not a number`)
@@ -79,8 +80,7 @@ let num = (number, dec = 1, min = 1000) => {
   let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
   return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
 }
-let fetched = ops.active.get(message.guild.id);
-let queue = fetched.queue;
+
 
     let queueembed = new Discord.RichEmbed()
     .setTitle(`**${info.title}**`)
