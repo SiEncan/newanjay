@@ -105,9 +105,9 @@ ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 	ctx.fillText(`${member.guild.name}`, canvas.width / 2.5, canvas.height / 3.0);
 
 	// Add an exclamation point here and below
-	ctx.font = applyText(canvas, `${member.displayName}!`);
+	ctx.font = applyText(canvas, `${member.user.tag}!`);
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${member.displayName}!`, canvas.width / 2.8, canvas.height / 1.5);
+	ctx.fillText(`${member.user.tag}!`, canvas.width / 2.8, canvas.height / 1.5);
 
 	ctx.beginPath();
 	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
@@ -130,7 +130,7 @@ bot.on("guildMemberRemove", async member => {
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return console.log("Tidak bisa menemukan welcome channel");
 
-  channel.send(`${member} Telah Keluar Dari Server.`);
+  channel.send(`${member.user.tag} Telah Keluar Dari Server.`);
 
 })
 
