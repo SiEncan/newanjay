@@ -142,7 +142,7 @@ let num = (number, dec = 1, min = 1000) => {
     let playembed = new Discord.RichEmbed()
     .setTitle(`**${data.queue[0].songTitle}**`)
     .setURL(`https://www.youtube.com${data.queue[0].url}`)
-    .setAuthor("Memainkan Musik 🎶:")
+    .setAuthor(`Memainkan Musik <a:ablobDJ:491647758558560276> `)
     .setColor(`#21e5ff`)
     .addField("Durasi Musik:", `${convert(data.queue[0].length)}`, true)
     .addField("Diupload Oleh:", `**[${data.queue[0].author}](${data.queue[0].authorl})**`, true)
