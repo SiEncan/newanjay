@@ -86,11 +86,11 @@ bot.on('guildMemberAdd', async member => {
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return console.log("Tidak bisa menemukan welcome channel");
   
-	const canvas = Canvas.createCanvas(1250, 500);
+	const canvas = Canvas.createCanvas(700, 250);
 	const ctx = canvas.getContext('2d');
 
 	const background = await Canvas.loadImage('https://media.istockphoto.com/photos/material-design-background-picture-id514054880?k=6&m=514054880&s=612x612&w=0&h=1unStgn18lb7r5jZvpYhu9JfC5YAY1pe-rp0ul0OQCA=');
-	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 	ctx.strokeStyle = '#74037b';
 	ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -98,27 +98,26 @@ bot.on('guildMemberAdd', async member => {
 	// Slightly smaller text placed above the member's display name
 	ctx.font = '28px sans-serif';
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText('Welcome to the server,', canvas.width / 2.5, canvas.height / 3.5);
+	ctx.fillText('Selamat Datang Di Server,', canvas.width / 2.5, canvas.height / 6.0);
 
 	// Add an exclamation point here and below
 	ctx.font = applyText(canvas, `${member.displayName}!`);
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${member.displayName}!`, canvas.width / 6.0, canvas.height / 1.3);
+	ctx.fillText(`${member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
 
 	ctx.beginPath();
-	ctx.arc(250, 270, 175, 0, Math.PI * 2, true);
+	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
 	ctx.closePath();
 	ctx.clip();
 
 	const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL);
 	const avatar = await Canvas.loadImage(buffer);
-	ctx.drawImage(avatar, 220, 100, 300, 300);
+	ctx.drawImage(avatar, 25, 25, 200, 200);
 
 	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
 	channel.send(`Welcome to the server, ${member}!`, attachment);
 });
-
 
 bot.on("guildMemberRemove", async member => {
   console.log(`${member.id} Left The Server.`);
