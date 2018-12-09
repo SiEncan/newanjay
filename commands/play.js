@@ -79,8 +79,8 @@ let num = (number, dec = 1, min = 1000) => {
   let formatted = Number(str.substr(0, length % 3 !== 0 ? length % 3 : 3) + '.' + str.substr(length % 3 !== 0 ? length % 3 : 3)).toFixed(dec)
   return formatted + (length > 15 ? 'qd' : length > 12 ? 'T' : length > 9 ? 'B' : length > 6 ? 'M' : length > 3 ? 'K' : '')
 }
-
-
+let fetched = ops.active.get(message.guild.id);
+let queue = fetched.queue;
 
     let queueembed = new Discord.RichEmbed()
     .setTitle(`**${info.title}**`)
@@ -91,6 +91,7 @@ let num = (number, dec = 1, min = 1000) => {
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`, true)
     .addField("Views:", `${num(info.player_response.videoDetails.viewCount, 2)}`, true)
+    .addFeld("Antrian No:", `${queue.length}`)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
