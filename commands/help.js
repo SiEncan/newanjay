@@ -14,51 +14,25 @@ module.exports.run = async (bot, message, args) =>{
   let prefix = prefixes[message.guild.id].prefixes;
 
   let helpembed = new Discord.RichEmbed()
-  .setTitle("~Moderator Help~ :gear:")
+  .setTitle("~List Command~")
   .setDescription(`Commands:`)
   .setColor("#51c7ff")
   .addField(":gear: Moderator", `\`clear\` \`kick\` \`ban\` \`mute\` \`autorole\` \`logchannel\` \`prefix\` \`welcome\``)
   .addField(":moneybag: Ekonomi", `\`cash\` \`pay\` \`dailycash\``)
-  .addField("<:casi:521161385095462913> Gamble", `\`gamble` \`slots\``)
+  .addField("<:casi:521161385095462913> Gamble", `\`gamble\` \`slots\``)
+  .addField("🎶 Music", `\`join\` \`leave\` \`play/p\` \`skip/s\` \`pause\` \`resume\` \`queue\` \`volume\` \`lirik\``)
+  .addField(" NSFW", `\`ass\` \`hentai\` \`tinytits\` \`gif\``)
   .addField("botinfo",`Menampilkan Informasi Bot`)
   .addField("level",`Menampilkan Level Kamu`)
   .addField("say",`Membuat bot mengetik apa yang kamu katakan`)
   .addField("serverinfo",`Menampilkan Informasi Server`)
   .addField("ping",`Menampilkan Ping Kamu`)
   .addField("ask",`Menjawab Pertanyaan`)
-  .addField("join",`Memasukkan Bot Ke Voice Channel`)
-  .addField("leave",`Mengeluarkan Bot Dari Voice Channel`)
+
   .setTimestamp()
   .setFooter("Anjay Bot", bot.user.avatarURL);
 
   message.channel.send(helpembed);
-  
-  let helpmusic = new Discord.RichEmbed()
-  .setTitle(`~Music Help~ 🎶`)
-  .setDescription(`Commands:`)
-  .setColor(`#51c7ff`)
-  .addField("play/p", `Memutar Musik`)
-  .addField("pause",`Menjeda Musik Yang Sedang Diputar`)
-  .addField("resume",`Melanjutkan Musik Yang Sedang DiJeda`)
-  .addField("volume",`Mengatur Volume Musik`)
-  .addField("queue",`Menampilkan Antrian Musik`)
-  .addField("skip/s",`Melewati Musik Yang Sedang Diputar`)
-  .addField("lirik", `Mencari Lirik Musik`)
-  .setTimestamp()
-  .setFooter("Anjay Bot", bot.user.avatarURL);
-
-  message.channel.send(helpmusic);
-
-  let prefixembed = new Discord.RichEmbed()
-  .setTitle(`Prefix`)
-  .setColor(`#51c7ff`)
-  .addField("Server Prefix:", prefix, true)
-  .addField("Gunakan:", `prefix<command>`)
-  .addField("Cara Mengganti Prefix:", `*prefix <prefix yang diinginkan>`)
-  .setTimestamp()
-  .setFooter("Anjay Bot", bot.user.avatarURL);
-
-  return message.channel.send(prefixembed);
 
 }
 
