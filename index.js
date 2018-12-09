@@ -89,7 +89,7 @@ bot.on('guildMemberAdd', async member => {
 	const canvas = Canvas.createCanvas(700, 250);
 	const ctx = canvas.getContext('2d');
 
-	const background = await Canvas.loadImage('https://i.gifer.com/Mcjl.gif');
+	const background = await Canvas.loadImage('https://media.istockphoto.com/photos/material-design-background-picture-id514054880?k=6&m=514054880&s=612x612&w=0&h=1unStgn18lb7r5jZvpYhu9JfC5YAY1pe-rp0ul0OQCA=');
 	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 	ctx.strokeStyle = '#74037b';
@@ -114,7 +114,7 @@ bot.on('guildMemberAdd', async member => {
 	const avatar = await Canvas.loadImage(buffer);
 	ctx.drawImage(avatar, 25, 25, 200, 200);
 
-	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.gif');
+	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
 	channel.send(`Welcome to the server, ${member}!`, attachment);
 });
