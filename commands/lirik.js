@@ -17,6 +17,7 @@ const scrapeLyrics = path => {
     });
 };
 
+
 const searchLyrics = url => {
   return Promise.resolve(axios.get(url, {'Authorization': `Bearer ${botconfig.genius}`})
     .then(response => checkSpotify(response.data.response.hits))
@@ -27,9 +28,11 @@ const searchLyrics = url => {
   );
 };
 
+
 const checkSpotify = hits => {
   return hits[0].result.primary_artist.name === 'Spotify' ? hits[1].result.url : hits[0].result.url;
 };
+
 
 
 exports.run = function(bot, message, args) {
@@ -41,7 +44,6 @@ exports.run = function(bot, message, args) {
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
     .then((songData, path) => {
       const embed = new Discord.RichEmbed()
-        .setTitle(`${path}`)
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(0, 1999));
        message.channel.send(embed);
