@@ -86,7 +86,7 @@ bot.on('guildMemberAdd', async member => {
   const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
     if (!channel) return console.log("Tidak bisa menemukan welcome channel");
   
-	const canvas = Canvas.createCanvas(700, 250);
+	const canvas = Canvas.createCanvas(1250, 500);
 	const ctx = canvas.getContext('2d');
 
 	const background = await Canvas.loadImage('https://media.istockphoto.com/photos/material-design-background-picture-id514054880?k=6&m=514054880&s=612x612&w=0&h=1unStgn18lb7r5jZvpYhu9JfC5YAY1pe-rp0ul0OQCA=');
@@ -107,13 +107,13 @@ bot.on('guildMemberAdd', async member => {
 	ctx.fillText(`${member.displayName}`, canvas.width / 2.8, canvas.height / 1.5);
 
 	ctx.beginPath();
-	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+	ctx.arc(75, 75, 75, 0, Math.PI * 2, true);
 	ctx.closePath();
 	ctx.clip();
 
 	const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL);
 	const avatar = await Canvas.loadImage(buffer);
-	ctx.drawImage(avatar, 25, 25, 200, 200);
+	ctx.drawImage(avatar, 20, 20, 200, 200);
 
 	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
