@@ -86,7 +86,7 @@ let num = (number, dec = 1, min = 1000) => {
     .setTitle(`**${info.title}**`)
     .setURL(`${info.video_url}`)
     .setAuthor("Ditambahkan Ke Dalam Antrian 🎶:")
-    .setColor(`#21e5ff`)
+    .setColor(`#00ff83`)
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`, true)

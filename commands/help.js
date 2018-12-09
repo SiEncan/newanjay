@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) =>{
 
   let helpembed = new Discord.RichEmbed()
   .setTitle("~List Command~")
-  .setColor("#51c7ff")
+  .setColor("#ffb200")
   .addField(":gear: Moderator", `\`clear\` \`kick\` \`ban\` \`mute\` \`autorole\` \`logchannel\` \`prefix\` \`welcome\``)
   .addField(":moneybag: Ekonomi", `\`cash\` \`pay\` \`dailycash\``)
   .addField("<:casi:521161385095462913> Gamble", `\`gamble\` \`slots\``)
