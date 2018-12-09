@@ -89,7 +89,7 @@ bot.on('guildMemberAdd', async member => {
 	const canvas = Canvas.createCanvas(700, 250);
 	const ctx = canvas.getContext('2d');
 
-	const background = await Canvas.loadImage('https://media.istockphoto.com/photos/material-design-background-picture-id514054880?k=6&m=514054880&s=612x612&w=0&h=1unStgn18lb7r5jZvpYhu9JfC5YAY1pe-rp0ul0OQCA=');
+	const background = await Canvas.loadImage('https://i.ibb.co/t3NKYXS/Untitled-1.png');
 ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 	ctx.strokeStyle = '#74037b';
@@ -107,7 +107,7 @@ ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 	// Add an exclamation point here and below
 	ctx.font = applyText(canvas, `${member.user.tag}!`);
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${member.user.tag}!`, canvas.width / 2.8, canvas.height / 1.5);
+	ctx.fillText(`${member.user.tag}`, canvas.width / 2.8, canvas.height / 1.5);
 
 	ctx.beginPath();
 	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
