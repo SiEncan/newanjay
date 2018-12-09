@@ -69,6 +69,14 @@ let check = (input) => {
 
 }
 
+let fetched = ops.active.get(message.guild.id);
+    
+    let queue = fetched.queue;
+
+    for (var i = 1; i < queue.length; i++) {
+
+    }
+
 
 let num = (number, dec = 1, min = 1000) => {
   if (number === undefined || number === null) throw new Error(`Error: ${number} is not a number`)
@@ -84,14 +92,14 @@ let num = (number, dec = 1, min = 1000) => {
 
     let queueembed = new Discord.RichEmbed()
     .setTitle(`**${info.title}**`)
-    .setURL(`${info.video_url}`)
+    .setURL(`${info.video_url}`)  
     .setAuthor("Ditambahkan Ke Dalam Antrian 🎶:")
     .setColor(`#00ff83`)
     .addField("Durasi Musik:", `${convert(info.length_seconds)}`, true)
     .addField("Diupload Oleh:", `**[${info.author.name}](${info.author.channel_url})**`, true)
     .addField("Direquest Oleh:", `${message.author.tag}`, true)
     .addField("Views:", `${num(info.player_response.videoDetails.viewCount, 2)}`, true)
-    .addFeld("Antrian No:", `${queue.length}`)
+    .addFeld("Antrian No:", `${i}`)
     .setThumbnail(`https://img.youtube.com/vi/${info.video_id}/hqdefault.jpg`)
     .setTimestamp()
     .setFooter("Anjay Bot", bot.user.avatarURL);
