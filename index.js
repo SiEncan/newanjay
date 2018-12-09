@@ -65,30 +65,38 @@ bot.on("guildMemberAdd", member => {
 });
 
 bot.on('guildMemberAdd', async member => {
-	const channel = member.guild.channels.find(ch => ch.name === 'member-log');
-	if (!channel) return;
+	const welChan = await db.fetch(`welChan_${member.guild.id}`);
 
+  const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
+    if (!channel) return console.log("Tidak bisa menemukan welcome channel");
+  
 	const canvas = Canvas.createCanvas(700, 250);
 	const ctx = canvas.getContext('2d');
 
-	// Since the image takes time to load, you should await it
-	const background = await Canvas.loadImage('./wallpaper.jpg');
-	// This uses the canvas dimensions to stretch the image onto the entire canvas
+	const background = await Canvas.loadImage('https://cdn.glitch.com/0c7a2f73-3db4-433f-9fa7-b6d094caf6e0%2Fbackground-blur-clean-531880.jpg?1544332253210');
 	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-	// Use helpful Attachment class structure to process the file for you
+
+	ctx.strokeStyle = '#74037b';
+	ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+	// Pick up the pen
+	ctx.beginPath();
+	// Start the arc to form a circle
+	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+	// Put the pen down
+	ctx.closePath();
+	// Clip off the region you drew on
+	ctx.clip();
+
+	const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL);
+	const avatar = await Canvas.loadImage(buffer);
+	ctx.drawImage(avatar, 25, 25, 200, 200);
+
 	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
 	channel.send(`Welcome to the server, ${member}!`, attachment);
 });
-bot.on("guildMemberAdd", async member => {
-  console.log(`${member} Joined The Server.`);
-  const welChan = await db.fetch(`welChan_${member.guild.id}`);
-  
-  const channel = await member.guild.channels.find(channel => channel.name.toLowerCase() === welChan.toLowerCase()  || channel.id === welChan.toLowerCase());
-    if (!channel) return console.log("Tidak bisa menemukan welcome channel");
 
-  channel.send(`🎉   Selamat Datang ${member}!   🎉`);
-});
 
 bot.on("guildMemberRemove", async member => {
   console.log(`${member.id} Left The Server.`);
