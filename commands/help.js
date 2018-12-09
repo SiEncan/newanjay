@@ -14,10 +14,10 @@ module.exports.run = async (bot, message, args) =>{
   let prefix = prefixes[message.guild.id].prefixes;
 
   let helpembed = new Discord.RichEmbed()
-  .setTitle("~General Help~ 🌐")
+  .setTitle("~Moderator Help~ :gear:")
   .setDescription(`Commands:`)
   .setColor("#51c7ff")
-  .addField("help",`Menampilkan Menu Ini`)
+  .addField("~Moderator Help~ :gear:",````)
   .addField("botinfo",`Menampilkan Informasi Bot`)
   .addField("cash",`Menampilkan Cash yang kamu punya`)
   .addField("pay",`Mengirim User lain cash`)

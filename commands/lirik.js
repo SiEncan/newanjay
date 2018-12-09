@@ -44,7 +44,7 @@ exports.run = function(bot, message, args) {
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
     .then(songData => {
       const embed = new Discord.RichEmbed()
-        .setTitle(`__${songData[0]}__ :microphone: <a:G_dnd:456002306308309002> `)
+        .setTitle(`__${songData[0]}__ :microphone:`)
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(0, 1999));
        message.channel.send(embed); 

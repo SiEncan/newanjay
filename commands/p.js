@@ -137,7 +137,7 @@ let num = (number, dec = 1, min = 1000) => {
 
 
     let playembed = new Discord.RichEmbed()
-    .setTitle(`**${data.queue[0].songTitle}**    <a:ablobDJ:491647758558560276>`)
+    .setTitle(`**${data.queue[0].songTitle}**`)
     .setURL(`https://www.youtube.com${data.queue[0].url}`)
     .setAuthor("Memainkan Musik 🎶:")
     .setColor(`#21e5ff`)
