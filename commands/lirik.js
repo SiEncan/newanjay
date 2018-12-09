@@ -50,7 +50,7 @@ exports.run = function(bot, message, args) {
        message.channel.send(embed); 
     const cembed = new Discord.RichEmbed()
         .setColor(0x00AE86)
-        .setDescription(songData[1].slice(2000))   
+        .setDescription(songData[1].slice(1999))   
         .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
         .setTimestamp();
       return message.channel.send(cembed);

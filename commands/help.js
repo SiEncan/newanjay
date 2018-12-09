@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) =>{
   .addField(":moneybag: Ekonomi", `\`cash\` \`pay\` \`dailycash\``)
   .addField("<:casi:521161385095462913> Gamble", `\`gamble\` \`slots\``)
   .addField("🎶 Music", `\`join\` \`leave\` \`play/p\` \`skip/s\` \`pause\` \`resume\` \`queue\` \`volume\` \`lirik\``)
-  .addField(" NSFW", `\`ass\` \`hentai\` \`tinytits\` \`gif\``)
+  .addField("<:18o:521168534026584094> NSFW", `\`ass\` \`hentai\` \`tinytits\` \`gif\``)
   .addField("botinfo",`Menampilkan Informasi Bot`)
   .addField("level",`Menampilkan Level Kamu`)
   .addField("say",`Membuat bot mengetik apa yang kamu katakan`)
