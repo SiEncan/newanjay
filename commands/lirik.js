@@ -42,19 +42,20 @@ exports.run = function(bot, message, args) {
  
   const query = args.slice(0).join(" ");
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
-    .then((songData, path) => {
+    .then(songData => {
       const embed = new Discord.RichEmbed()
+        .setTitle(`Lirik Untuk:${songData[0]}`)
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(0, 1999));
        message.channel.send(embed);
-    
+    console.log(songData)    
     const cembed = new Discord.RichEmbed()
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(2000))   
         .setFooter(`Direquest Oleh ${message.author.username}`, message.author.avatarURL)
         .setTimestamp();
       return message.channel.send(cembed);
-  
+
     })
   .catch(err => {
       message.channel.send(`Tidak Bisa Menemukan Lirik Untuk: ${query}`, {code:'asciidoc'});
