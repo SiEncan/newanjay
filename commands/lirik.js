@@ -4,10 +4,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const botconfig = require('../botconfig.json');
 
-module.exports.run = async (bot, message, args, ops) => {
-
 const baseURL = `https://api.genius.com/search?access_token=${botconfig.genius}`;
-let data = ops.active.get(message.guild.id) || {};
 
 const scrapeLyrics = path => {
   return axios.get(path)
@@ -36,14 +33,15 @@ const checkSpotify = hits => {
 
 
 exports.run = function(bot, message, args) {
-  data = bot.data;
+
 
   if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
  
   const query = args.slice(0).join(" ");
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
-    .then(songData => {
+    .then((songData, path) => {
       const embed = new Discord.RichEmbed()
+        .setTitle(`${path}`)
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(0, 1999));
        message.channel.send(embed);
@@ -63,7 +61,7 @@ exports.run = function(bot, message, args) {
   
 };
 
-}
+
 exports.help = {
   name: 'lirik',
   usage: 'lirik [Judul Musik]'
