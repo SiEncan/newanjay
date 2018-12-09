@@ -107,13 +107,13 @@ bot.on('guildMemberAdd', async member => {
 	ctx.fillText(`${member.displayName}`, canvas.width / 2.8, canvas.height / 1.5);
 
 	ctx.beginPath();
-	ctx.arc(75, 75, 75, 0, Math.PI * 2, true);
+	ctx.arc(200, 150, 125, 0, Math.PI * 2, true);
 	ctx.closePath();
 	ctx.clip();
 
 	const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL);
 	const avatar = await Canvas.loadImage(buffer);
-	ctx.drawImage(avatar, 20, 20, 200, 200);
+	ctx.drawImage(avatar, 50, 50, 300, 300);
 
 	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
