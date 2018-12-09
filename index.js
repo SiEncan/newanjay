@@ -98,22 +98,21 @@ bot.on('guildMemberAdd', async member => {
 	// Slightly smaller text placed above the member's display name
 	ctx.font = '28px sans-serif';
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`Selamat Datang Di Server 
-  ${member.guild.name},`, canvas.width / 3.0, canvas.height / 4.2);
+	ctx.fillText('Welcome to the server,', canvas.width / 2.5, canvas.height / 3.5);
 
 	// Add an exclamation point here and below
-	ctx.font = applyText(canvas, `${member.name}!`);
+	ctx.font = applyText(canvas, `${member.displayName}!`);
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${member.displayName}`, canvas.width / 2.8, canvas.height / 1.5);
+	ctx.fillText(`${member.displayName}!`, canvas.width / 1.0, canvas.height / 1.8);
 
 	ctx.beginPath();
-	ctx.arc(175, 175, 150, 0, Math.PI * 2, true);
+	ctx.arc(175, 175, 125, 0, Math.PI * 2, true);
 	ctx.closePath();
 	ctx.clip();
 
 	const { body: buffer } = await snekfetch.get(member.user.displayAvatarURL);
 	const avatar = await Canvas.loadImage(buffer);
-	ctx.drawImage(avatar, 25, 25, 175, 175);
+	ctx.drawImage(avatar, 50, 50, 250, 250);
 
 	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
 
