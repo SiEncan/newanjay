@@ -44,11 +44,10 @@ exports.run = function(bot, message, args) {
   searchLyrics(`${baseURL}&q=${encodeURIComponent(query)}`)
     .then(songData => {
       const embed = new Discord.RichEmbed()
-        .setTitle(`Lirik Untuk:${songData[0]}`)
+        .setTitle(`__${songData[0]}__ :microphone: `)
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(0, 1999));
-       message.channel.send(embed);
-    console.log(songData)    
+       message.channel.send(embed); 
     const cembed = new Discord.RichEmbed()
         .setColor(0x00AE86)
         .setDescription(songData[1].slice(2000))   
