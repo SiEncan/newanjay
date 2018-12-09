@@ -14,6 +14,8 @@ setInterval(() => {
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require ("fs");
+const Canvas = require('canvas');
+const snekfetch = require('snekfetch');
 const db = require('quick.db');
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
@@ -62,6 +64,22 @@ bot.on("guildMemberAdd", member => {
 	member.addRole(role);
 });
 
+bot.on('guildMemberAdd', async member => {
+	const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+	if (!channel) return;
+
+	const canvas = Canvas.createCanvas(700, 250);
+	const ctx = canvas.getContext('2d');
+
+	// Since the image takes time to load, you should await it
+	const background = await Canvas.loadImage('./wallpaper.jpg');
+	// This uses the canvas dimensions to stretch the image onto the entire canvas
+	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+	// Use helpful Attachment class structure to process the file for you
+	const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png');
+
+	channel.send(`Welcome to the server, ${member}!`, attachment);
+});
 bot.on("guildMemberAdd", async member => {
   console.log(`${member} Joined The Server.`);
   const welChan = await db.fetch(`welChan_${member.guild.id}`);
