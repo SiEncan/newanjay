@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) =>{
   .addField(":moneybag: Ekonomi", `\`cash\` \`pay\` \`dailycash\``)
   .addField("<:casi:521161385095462913> Gamble", `\`gamble\` \`slots\``)
   .addField("🎶 Music", `\`join\` \`leave\` \`play/p\` \`skip/s\` \`pause\` \`resume\` \`queue\` \`volume\` \`lirik\``)
-  .addField("<:18o:521168534026584094> NSFW", `\`ass\` \`hentai\` \`tinytits\` \`gif\` \`uniform\` \`gif\``)
+  .addField("<:18o:521168534026584094> NSFW", `\`ass\` \`hentai\` \`tinytits\` \`gif\` \`uniform\` \`snapchat\``)
   .addField("Lainnya", `\`ping\` \`ask\` \`say\` \`level\` \`botinfo\` \`serverinfo\``)
 
   .setTimestamp()
