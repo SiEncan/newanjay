@@ -13,6 +13,8 @@ module.exports.run = async (bot, message, args) => {
             randomPuppy(s)
             .then(url => {
                 const embed = new Discord.RichEmbed()
+                    .setTitle(`**NSFW** <:18o:521168534026584094>`)
+                    .setDescription(`Hentai`)
                     .setColor(0xffa500)
                     .setImage(url)
                     .setTimestamp()

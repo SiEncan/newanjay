@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.channel.nsfw) {
         message.reply(`🔞 Command Ini Hanya Dapat DiGunakan Di NSFW Channel!`);
     } else {
-        let sReddits = ["MilitaryGoneWild", "sexyuniforms"];
+        let sReddits = ["NSFW_Snapchat","snapchatgw"];
         let s = sReddits[Math.round(Math.random() * (sReddits.length - 1))];
 
         try {
@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
             .then(url => {
                 const embed = new Discord.RichEmbed()
                     .setTitle(`**NSFW** <:18o:521168534026584094>`)
-                    .setDescription(`Uniform`)
+                    .setDescription(`Snapchat`)
                     .setColor(0xffa500)
                     .setImage(url)
                     .setTimestamp()
@@ -28,5 +28,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "uniform"
+    name: "snapchat"
 }

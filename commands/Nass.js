@@ -13,6 +13,8 @@ module.exports.run = async (bot, message, args) => {
             randomPuppy(s)
             .then(url => {
                 const embed = new Discord.RichEmbed()
+                    .setTitle(`**NSFW** <:18o:521168534026584094>`)
+                    .setDescription(`Ass`)
                     .setColor(0xffa500)
                     .setImage(url)
                     .setTimestamp()
@@ -20,14 +22,7 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.send({ embed });
         })
           } catch (e) {
-            let nsmbed = new Discord.RichEmbed()
-            .setTitle(`**NSFW** 🔞`)
-            .setDescription(`hello`)
-            .setColor(`#ff0000`)
-            .setTimestamp()
-            .setFooter("Direquest oleh", message.author.username);
 
-              message.channel.send(nsmbed);
           }
     }
 }

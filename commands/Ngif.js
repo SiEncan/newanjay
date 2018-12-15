@@ -22,6 +22,8 @@ exports.run = (client, message, args) => {
     randomPuppy(sub)
             .then(url => {
                 const embed = new Discord.RichEmbed()
+                    .setTitle(`**NSFW** <:18o:521168534026584094>`)
+                    .setDescription(`Gif`)
                     .setColor(0xffa500)
                     .setImage(url)
                     .setTimestamp()
