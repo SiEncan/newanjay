@@ -4,6 +4,7 @@ let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) =>{
   if (!args[0]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
+  if (!args[1]) return message.reply(`Gunakan: ${exports.help.usage}`, {code:'asciidoc'});
   if (message.author.id !== '500457305834389529') return message.reply("Lu Mana Bisa Njeng.");
 
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
@@ -20,8 +21,15 @@ module.exports.run = async (bot, message, args) =>{
   coins[pUser.id] = {
     coins: pCoins + parseInt(args[1])
   };
+  
+  let pchan = new Discord.RichEmbed()
+  .setTitle(`~Ngecit Bos?~`)
+  .setDescription(`${message.author} Memberikan ${pUser} ${args[1]} cash 💰`)
+  .setColor(`#ff0000`)
+  .setTimestamp()
+  .setFooter("Anjay Bot", bot.user.avatarURL);
 
-  message.channel.send(`${message.author} Telah Memberi ${pUser} ${args[1]} cash 💰.`);
+ message.channel.send(pchan);
 
   fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
     if(err) console.log(err)
