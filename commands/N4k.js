@@ -7,9 +7,6 @@ module.exports.run = async (bot, message, args) => {
         message.reply(`🔞 Command Ini Hanya Dapat DiGunakan Di NSFW Channel!`);
     } else {
         let sReddits = [
-          'ass', 
-          'NSFW_Wallpapers', 
-          'SexyWallpapers', 
           'HighResNSFW', 
           'nsfw_hd', 
           'UHDnsfw'
