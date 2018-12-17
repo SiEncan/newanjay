@@ -66,5 +66,5 @@ exports.run = function(bot, message, args) {
 
 exports.help = {
   name: 'lirik',
-  usage: 'lirik [Judul Musik]'
+  usage: 'lirik [Judul Musik] [Penyanyi]'
 };
