@@ -1,6 +1,6 @@
 exports.run = async (client, message, level) => {
 
-    message.channel.send('**Ngudud Dlu Ea Mamang**').then(async msg => {
+    message.channel.send('**BISSSSHES IM SMOKING**').then(async msg => {
         setTimeout(() => {
             msg.edit('🚬');
         }, 500);
@@ -23,7 +23,7 @@ exports.run = async (client, message, level) => {
             msg.edit('🚬 ');
         }, 3500);
         setTimeout(() => {
-            msg.edit(`**Mantab Ea Mamang!!**`);
+            msg.edit(`Finished smoking`);
         }, 4000);
     });
 };
