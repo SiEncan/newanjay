@@ -45,6 +45,7 @@
     "small-number": "^1.2.1",
     "canvas": "^2.2.0",
     "discord-akairo": "^7.5.5",
-    "slot-machine": "^2.1.0"
+    "slot-machine": "^2.1.0",
+    "npmd-rebuild": "^0.1.2"
   }
 }
