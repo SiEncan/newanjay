@@ -33,7 +33,7 @@ function changing_status() {
 }
 
 bot.on("ready", () => {
-    console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
+    console.log(`${bot.user.username} is online on ${bot.guilds.size} server!`);
     setInterval(changing_status, 5000);
 
 });
